@@ -49,18 +49,13 @@ export default function TermsPage() {
             CVEngine
           </Link>
           <nav className="flex items-center gap-3 text-sm" aria-label="Main">
-            <Link href="/" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">
-              Home
-            </Link>
-            <Link href="/about" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">
-              About
-            </Link>
-            <Link href="/privacy" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">
-              Privacy
-            </Link>
-            <Link href="/contact" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">
-              Contact
-            </Link>
+            <Link href="/" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">CV</Link>
+            <Link href="/cover-letter" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Cover letter</Link>
+            <Link href="/keyword-checker" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Keyword checker</Link>
+            <Link href="/snippets" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Snippets</Link>
+            <Link href="/about" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">About</Link>
+            <Link href="/privacy" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Privacy</Link>
+            <Link href="/contact" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Contact</Link>
           </nav>
         </div>
       </header>

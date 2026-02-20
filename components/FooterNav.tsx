@@ -13,6 +13,24 @@ export default function FooterNav() {
         Home
       </Link>
       <Link
+        href="/cover-letter"
+        className="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline"
+      >
+        Cover letter
+      </Link>
+      <Link
+        href="/keyword-checker"
+        className="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline"
+      >
+        Keyword checker
+      </Link>
+      <Link
+        href="/snippets"
+        className="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline"
+      >
+        Snippets
+      </Link>
+      <Link
         href="/privacy"
         className="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline"
       >
