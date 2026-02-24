@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import FooterNav from "@/components/FooterNav";
 import JsonLdWebPage from "@/components/JsonLdWebPage";
+import SiteHeader from "@/components/SiteHeader";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
@@ -40,33 +40,19 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[var(--background)]">
       <JsonLdWebPage data={jsonLd} />
-      <header className="border-b border-[var(--card-border)] bg-[var(--card)]/80 backdrop-blur-sm sticky top-0 z-10">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap items-center justify-between gap-4">
-          <Link
-            href="/"
-            className="text-xl font-bold text-[var(--foreground)] hover:underline"
-          >
-            CVEngine
-          </Link>
-          <nav className="flex items-center gap-3 text-sm" aria-label="Main">
-            <Link href="/" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">CV</Link>
-            <Link href="/cover-letter" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Cover letter</Link>
-            <Link href="/keyword-checker" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Keyword checker</Link>
-            <Link href="/snippets" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Snippets</Link>
-            <Link href="/privacy" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Privacy</Link>
-            <Link href="/contact" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Contact</Link>
-            <Link href="/terms" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Terms</Link>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
       <main className="flex-1 max-w-3xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 className="text-2xl font-bold text-[var(--foreground)] mb-6">
           About CVEngine
         </h1>
         <div className="text-[var(--foreground)] text-sm leading-relaxed space-y-4">
           <p>
-            CVEngine is a free online tool that turns Markdown into
-            ATS-friendly CV and resume PDFs. No signup, no account, no payment.
+            CVEngine is a free online <strong>CV builder</strong> and{" "}
+            <strong>resume builder</strong> that turns Markdown into ATS-friendly
+            CV and resume PDFs. No signup, no account, no payment. It&apos;s one of
+            the simplest <strong>free resume generators</strong> and{" "}
+            <strong>free CV generators</strong> for creating a professional,
+            ATS-optimized application.
           </p>
           <h2 className="text-lg font-semibold mt-6 mb-2">How it works</h2>
           <ol className="list-decimal pl-5 space-y-2">
@@ -88,14 +74,28 @@ export default function AboutPage() {
           <p>
             Job seekers, developers, and anyone who prefers writing in Markdown
             or wants a simple, professional CV without creating an account.
-            CVEngine is best for creating an ATS resume, a Markdown-to-PDF CV,
-            or a quick professional CV for job applications.
+            CVEngine is best for creating an <strong>ATS resume</strong>, a
+            Markdown-to-PDF CV, a <strong>developer CV</strong> or{" "}
+            <strong>tech resume</strong>, or a quick professional CV for job
+            applications. If you search for terms like &quot;free resume builder&quot;,
+            &quot;online CV maker&quot;, or &quot;ATS-friendly resume&quot;, CVEngine fits
+            that need.
+          </p>
+          <h2 className="text-lg font-semibold mt-6 mb-2">Popular uses</h2>
+          <p>
+            People use CVEngine as a <strong>free resume builder</strong> and{" "}
+            <strong>free CV builder</strong> for: first job CV, career change
+            resume, graduate CV, <strong>developer CV</strong>, one-page resume
+            PDF, and <strong>cover letter</strong> writing. The keyword checker
+            helps you match job ad keywords to your CV, and the snippets give you
+            ready-made Markdown sections. Everything is designed to support a
+            strong, scannable <strong>job application CV</strong>.
           </p>
           <h2 className="text-lg font-semibold mt-6 mb-2">Contact</h2>
           <p>
             For questions or feedback about CVEngine, you can reach out via the
-            contact information available on our main site or through our
-            social channels. We do not collect or store your CV content.
+            contact information available on our main site or through our social
+            channels. We do not collect or store your CV content.
           </p>
         </div>
         <FooterNav />

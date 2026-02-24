@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import FooterNav from "@/components/FooterNav";
 import JsonLdWebPage from "@/components/JsonLdWebPage";
+import SiteHeader from "@/components/SiteHeader";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
@@ -40,25 +41,7 @@ export default function PrivacyPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[var(--background)]">
       <JsonLdWebPage data={jsonLd} />
-      <header className="border-b border-[var(--card-border)] bg-[var(--card)]/80 backdrop-blur-sm sticky top-0 z-10">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap items-center justify-between gap-4">
-          <Link
-            href="/"
-            className="text-xl font-bold text-[var(--foreground)] hover:underline"
-          >
-            CVEngine
-          </Link>
-          <nav className="flex items-center gap-3 text-sm" aria-label="Main">
-            <Link href="/" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">CV</Link>
-            <Link href="/cover-letter" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Cover letter</Link>
-            <Link href="/keyword-checker" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Keyword checker</Link>
-            <Link href="/snippets" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Snippets</Link>
-            <Link href="/about" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">About</Link>
-            <Link href="/contact" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Contact</Link>
-            <Link href="/terms" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Terms</Link>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
       <main className="flex-1 max-w-3xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 className="text-2xl font-bold text-[var(--foreground)] mb-6">
           Privacy Policy

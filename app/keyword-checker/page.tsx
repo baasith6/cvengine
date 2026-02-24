@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import SiteHeader from "@/components/SiteHeader";
 import FooterNav from "@/components/FooterNav";
+import BackToTools from "@/components/BackToTools";
 import { checkKeywords } from "@/lib/keyword-check";
 
 export default function KeywordCheckerPage() {
@@ -18,47 +20,35 @@ export default function KeywordCheckerPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[var(--background)]">
-      <header className="border-b border-[var(--card-border)] bg-[var(--card)]/80 backdrop-blur-sm sticky top-0 z-10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap items-center justify-between gap-4">
-          <Link href="/" className="text-xl font-bold text-[var(--foreground)] hover:underline">
-            CVEngine
-          </Link>
-          <nav className="flex items-center gap-3 text-sm" aria-label="Main">
-            <Link href="/" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">CV</Link>
-            <Link href="/cover-letter" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Cover letter</Link>
-            <Link href="/snippets" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Snippets</Link>
-            <Link href="/about" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">About</Link>
-            <Link href="/privacy" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Privacy</Link>
-            <Link href="/contact" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Contact</Link>
-            <Link href="/terms" className="text-[var(--muted)] hover:text-[var(--foreground)] hover:underline">Terms</Link>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
       <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h1 className="text-2xl font-bold text-[var(--foreground)] mb-2">
-          CV keyword checker
-        </h1>
-        <p className="text-[var(--muted)] text-sm mb-6">
-          Paste the job description and your CV (plain text). We&apos;ll show word counts and which job keywords appear in your CV or are missing. All processing runs in your browser; nothing is sent to our server.
-        </p>
+        <BackToTools />
+        <div className="mb-8 text-center">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] tracking-tight">
+            CV keyword checker
+          </h1>
+          <p className="text-[var(--muted)] text-sm mt-2 max-w-xl mx-auto">
+            Paste the job ad and your CV. See which keywords match and which are missing. All in your browser—nothing is sent to our server.
+          </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div className="flex flex-col">
             <label className="text-sm font-medium text-[var(--foreground)] mb-2">
-              Job description / ad
+              Job description
             </label>
             <textarea
-              className="flex-1 min-h-[180px] p-4 rounded-lg border border-[var(--card-border)] bg-[var(--card)] text-[var(--foreground)] placeholder:text-[var(--muted)] text-sm resize-y"
-              placeholder="Paste the job posting text here..."
+              className="flex-1 min-h-[180px] p-4 rounded-xl border border-[var(--card-border)] bg-[var(--card)] text-[var(--foreground)] placeholder:text-[var(--muted)] text-sm resize-y focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent outline-none transition-shadow"
+              placeholder="Paste the job posting here..."
               value={jobAd}
               onChange={(e) => setJobAd(e.target.value)}
             />
           </div>
           <div className="flex flex-col">
             <label className="text-sm font-medium text-[var(--foreground)] mb-2">
-              Your CV (paste as text)
+              Your CV (plain text)
             </label>
             <textarea
-              className="flex-1 min-h-[180px] p-4 rounded-lg border border-[var(--card-border)] bg-[var(--card)] text-[var(--foreground)] placeholder:text-[var(--muted)] text-sm resize-y"
+              className="flex-1 min-h-[180px] p-4 rounded-xl border border-[var(--card-border)] bg-[var(--card)] text-[var(--foreground)] placeholder:text-[var(--muted)] text-sm resize-y focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent outline-none transition-shadow"
               placeholder="Paste your CV text here..."
               value={cvText}
               onChange={(e) => setCvText(e.target.value)}
@@ -68,12 +58,12 @@ export default function KeywordCheckerPage() {
         <button
           type="button"
           onClick={runCheck}
-          className="px-4 py-2 rounded-lg bg-[var(--accent)] text-white font-medium hover:bg-[var(--accent-hover)] transition-colors mb-6"
+          className="px-5 py-2.5 rounded-xl bg-[var(--accent)] text-white font-medium hover:bg-[var(--accent-hover)] transition-colors shadow-sm hover:shadow-md"
         >
           Check keywords
         </button>
         {result && (
-          <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-6 space-y-4">
+          <div className="mt-8 rounded-2xl border border-[var(--card-border)] bg-[var(--card)] p-6 shadow-sm space-y-4">
             <h2 className="text-lg font-semibold text-[var(--foreground)]">
               Results
             </h2>
@@ -81,29 +71,29 @@ export default function KeywordCheckerPage() {
               <div>
                 <p className="text-[var(--muted)]">Job ad</p>
                 <p className="font-medium text-[var(--foreground)]">
-                  {result.jobWordCount} words, {result.jobCharCount} characters
+                  {result.jobWordCount} words · {result.jobCharCount} chars
                 </p>
               </div>
               <div>
                 <p className="text-[var(--muted)]">Your CV</p>
                 <p className="font-medium text-[var(--foreground)]">
-                  {result.cvWordCount} words, {result.cvCharCount} characters
+                  {result.cvWordCount} words · {result.cvCharCount} chars
                 </p>
               </div>
             </div>
             <div>
               <p className="text-sm font-medium text-[var(--foreground)] mb-1">
-                Keywords in your CV ({result.inCv.length})
+                In your CV ({result.inCv.length})
               </p>
               <p className="text-sm text-[var(--muted)]">
                 {result.inCv.length > 0
                   ? result.inCv.join(", ")
-                  : "None detected (try pasting more CV text)."}
+                  : "None detected."}
               </p>
             </div>
             <div>
               <p className="text-sm font-medium text-[var(--foreground)] mb-1">
-                Keywords missing from your CV ({result.missing.length})
+                Missing ({result.missing.length})
               </p>
               <p className="text-sm text-[var(--muted)]">
                 {result.missing.length > 0
@@ -111,10 +101,9 @@ export default function KeywordCheckerPage() {
                   : "All job keywords appear in your CV."}
               </p>
             </div>
-            <p className="text-xs text-[var(--muted)]">
-              Tip: Add missing keywords naturally where they fit.{" "}
-              <Link href="/" className="text-[var(--accent)] underline">
-                Build your CV with CVEngine
+            <p className="text-xs text-[var(--muted)] pt-2">
+              <Link href="/cv" className="text-[var(--accent)] underline">
+                Build your CV
               </Link>
             </p>
           </div>

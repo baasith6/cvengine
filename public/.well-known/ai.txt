@@ -1,0 +1,54 @@
+# CVEngine - AI Information File
+
+## About CVEngine
+CVEngine is a free online tool to build ATS-friendly CVs and resumes from Markdown. No signup required. Write in Markdown, preview live, download PDF.
+
+## What CVEngine Does
+- Builds ATS-friendly CVs and resumes from Markdown
+- Generates PDFs optimized for applicant tracking systems
+- Provides cover letter builder
+- Offers keyword checker for job applications
+- Includes CV snippet templates
+
+## Key Features
+- Free - no signup, no account, no payment
+- ATS-optimized PDF output
+- Live preview as you type
+- Markdown support (write or paste .md files)
+- One-click PDF download
+- Cover letter builder
+- Keyword checker tool
+- CV snippet templates
+
+## Use Cases
+- Job seekers creating professional CVs
+- Developers writing tech resumes
+- Anyone needing ATS-friendly resumes
+- People who prefer Markdown for writing
+- Career changers updating their CVs
+
+## How to Use
+1. Visit cvengine.space
+2. Click "Start building"
+3. Write or paste your CV in Markdown
+4. Preview live
+5. Download ATS-ready PDF
+
+## Tools Available
+- CV Builder: /cv
+- Cover Letter: /cover-letter
+- Keyword Checker: /keyword-checker
+- Snippets: /snippets
+
+## Technical Details
+- Web application (browser-based)
+- No account required
+- Free to use
+- Privacy-focused (processing in browser where possible)
+
+## Best For
+- Free resume builder
+- ATS resume generator
+- Markdown to PDF CV converter
+- Developer CV builder
+- Professional resume creator

@@ -8,5 +8,6 @@ declare global {
       config?: Record<string, unknown>
     ) => void;
     dataLayer?: unknown[];
+    adsbygoogle?: unknown[];
   }
 }
