@@ -5,6 +5,7 @@ import Link from "next/link";
 import Editor from "@/components/Editor";
 import Preview from "@/components/Preview";
 import DownloadPdfButton from "@/components/DownloadPdfButton";
+import DownloadWordButton from "@/components/DownloadWordButton";
 import SiteHeader from "@/components/SiteHeader";
 import FooterNav from "@/components/FooterNav";
 import BackToTools from "@/components/BackToTools";
@@ -17,10 +18,16 @@ export default function CoverLetterPage() {
     <div className="min-h-screen flex flex-col bg-[var(--background)]">
       <SiteHeader
         rightAction={
-          <DownloadPdfButton
-            markdown={markdown}
-            downloadFilename="cover-letter-ats.pdf"
-          />
+          <div className="flex items-center gap-2">
+            <DownloadPdfButton
+              markdown={markdown}
+              downloadFilename="cover-letter-ats.pdf"
+            />
+            <DownloadWordButton
+              markdown={markdown}
+              downloadFilename="cover-letter-ats.docx"
+            />
+          </div>
         }
       />
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">

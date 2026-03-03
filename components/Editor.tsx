@@ -41,7 +41,7 @@ export default function Editor({ value, onChange }: EditorProps) {
         className="flex-1 w-full p-4 font-[family-name:var(--font-geist-mono)] text-sm leading-relaxed border-0 focus:ring-0 focus:outline-none resize-none bg-transparent text-[var(--foreground)] placeholder:text-[var(--muted)]"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="Paste or type your CV in Markdown..."
+        placeholder="Paste, type, or upload a .md file..."
         spellCheck={false}
       />
     </div>

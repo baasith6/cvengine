@@ -42,6 +42,18 @@ const ARTICLES = [
     description:
       "Use keywords and structure to tailor your CV so it aligns with what recruiters and ATS look for.",
   },
+  {
+    slug: "one-page-resume",
+    title: "One-page resume: when and how",
+    description:
+      "When to use a one-page resume and how to fit your experience without cutting what matters.",
+  },
+  {
+    slug: "first-cv",
+    title: "Writing your first CV: a simple guide",
+    description:
+      "What to include, structure, and how to get an ATS-ready PDF for your first CV.",
+  },
 ];
 
 export default function ResourcesPage() {

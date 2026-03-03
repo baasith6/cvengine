@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 type SiteHeaderProps = {
   /** Optional: show a primary CTA (e.g. Download PDF) on the right */
@@ -8,8 +9,12 @@ type SiteHeaderProps = {
 };
 
 export default function SiteHeader({ rightAction }: SiteHeaderProps) {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const isAbout = pathname === "/about";
+
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--card-border)] bg-[var(--card)]/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-[var(--card-border)] bg-[var(--card)]/95 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         <Link
           href="/"
@@ -20,13 +25,21 @@ export default function SiteHeader({ rightAction }: SiteHeaderProps) {
         <nav className="flex items-center gap-6 text-sm" aria-label="Main">
           <Link
             href="/"
-            className="text-[var(--muted)] hover:text-[var(--foreground)] font-medium transition-colors"
+            className={`font-medium transition-colors ${
+              isHome
+                ? "text-[var(--foreground)] font-semibold"
+                : "text-[var(--muted)] hover:text-[var(--foreground)]"
+            }`}
           >
             All tools
           </Link>
           <Link
             href="/about"
-            className="text-[var(--muted)] hover:text-[var(--foreground)] font-medium transition-colors"
+            className={`font-medium transition-colors ${
+              isAbout
+                ? "text-[var(--foreground)] font-semibold"
+                : "text-[var(--muted)] hover:text-[var(--foreground)]"
+            }`}
           >
             About
           </Link>

@@ -37,12 +37,18 @@ export default function SnippetsPage() {
             to preview and download PDF.
           </p>
         </div>
-        <div className="grid gap-5">
-          {CV_SNIPPETS.map((snippet) => (
-            <div
-              key={snippet.id}
-              className="rounded-2xl border border-[var(--card-border)] bg-[var(--card)] p-5 shadow-sm hover:shadow-md transition-shadow"
-            >
+        <div className="space-y-8">
+          {(["Core", "Optional"] as const).map((category) => (
+            <div key={category}>
+              <h2 className="text-sm font-semibold text-[var(--muted)] uppercase tracking-wider mb-4">
+                {category} sections
+              </h2>
+              <div className="grid gap-5">
+                {CV_SNIPPETS.filter((s) => s.category === category).map((snippet) => (
+                  <div
+                    key={snippet.id}
+                    className="rounded-2xl border border-[var(--card-border)] bg-[var(--card)] p-5 shadow-sm hover:shadow-md transition-shadow"
+                  >
               <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
                 <h2 className="text-lg font-semibold text-[var(--foreground)]">
                   {snippet.title}
@@ -70,6 +76,9 @@ export default function SnippetsPage() {
               <pre className="text-xs font-mono bg-[var(--background)] p-4 rounded-xl overflow-x-auto text-[var(--foreground)] whitespace-pre-wrap border border-[var(--card-border)]">
                 {snippet.markdown}
               </pre>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>

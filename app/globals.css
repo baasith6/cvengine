@@ -2,14 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Refined teal theme – professional, calm, one clear accent */
 :root {
-  --background: #f8fafc;
+  --background: #f1f5f9;
   --foreground: #0f172a;
   --card: #ffffff;
   --card-border: #e2e8f0;
-  --accent: #0f766e;
-  --accent-hover: #0d9488;
-  --muted: #64748b;
+  --accent: #0d9488;
+  --accent-hover: #0f766e;
+  --accent-secondary: #64748b;
+  --muted: #475569;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,6 +22,7 @@
     --card-border: #334155;
     --accent: #2dd4bf;
     --accent-hover: #5eead4;
+    --accent-secondary: #94a3b8;
     --muted: #94a3b8;
   }
 }
@@ -44,6 +47,17 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* Shared card style for consistency */
+.card-elevated {
+  border-radius: 1rem;
+  border: 1px solid var(--card-border);
+  background: var(--card);
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+}
+.card-elevated:hover {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.07);
 }
 
 /* Subtle grid pattern for depth (optional) */

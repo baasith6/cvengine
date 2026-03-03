@@ -37,9 +37,15 @@ export function CookieConsentProvider({
   useEffect(() => {
     try {
       const stored = localStorage.getItem(CONSENT_KEY);
-      setHasConsentState(stored === "true");
+      if (stored === "true") {
+        setHasConsentState(true);
+      } else if (stored === "false") {
+        setHasConsentState(false);
+      } else {
+        setHasConsentState(null);
+      }
     } catch {
-      setHasConsentState(false);
+      setHasConsentState(null);
     }
   }, []);
 
@@ -64,7 +70,7 @@ export function CookieConsentProvider({
 function CookieBanner() {
   const { hasConsent, setConsent } = useConsent();
 
-  if (hasConsent !== false) return null;
+  if (hasConsent !== null) return null;
 
   return (
     <div
@@ -74,19 +80,28 @@ function CookieBanner() {
     >
       <div className="max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-4">
         <p className="text-sm text-[var(--foreground)]">
-          We use cookies for analytics and ads to improve the site. By
-          continuing you agree to our use of cookies.{" "}
+          We use cookies for analytics and ads to improve the site. You can
+          accept or reject non-essential cookies.{" "}
           <a href="/privacy" className="text-[var(--accent)] underline">
             Privacy
           </a>
         </p>
-        <button
-          type="button"
-          onClick={() => setConsent(true)}
-          className="shrink-0 px-4 py-2 rounded-lg bg-[var(--accent)] text-white font-medium hover:bg-[var(--accent-hover)] transition-colors"
-        >
-          Accept
-        </button>
+        <div className="shrink-0 flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setConsent(false)}
+            className="px-4 py-2 rounded-lg border border-[var(--card-border)] bg-transparent text-[var(--accent-secondary)] font-medium hover:border-[var(--accent)]/50 hover:text-[var(--accent)] transition-colors"
+          >
+            Reject
+          </button>
+          <button
+            type="button"
+            onClick={() => setConsent(true)}
+            className="px-4 py-2 rounded-lg bg-[var(--accent)] text-white font-medium hover:bg-[var(--accent-hover)] transition-colors"
+          >
+            Accept
+          </button>
+        </div>
       </div>
     </div>
   );

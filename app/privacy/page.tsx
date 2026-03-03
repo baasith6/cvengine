@@ -94,6 +94,19 @@ export default function PrivacyPage() {
             Their use of data is governed by their respective privacy policies
             (e.g. Google Privacy Policy).
           </p>
+          <p>
+            Learn more about how Google uses information from sites and apps that
+            use Google services:{" "}
+            <a
+              href="https://policies.google.com/technologies/partner-sites"
+              className="text-[var(--accent)] underline"
+              target="_blank"
+              rel="noreferrer"
+            >
+              How Google uses data when you use our partners&apos; sites or apps
+            </a>
+            .
+          </p>
           <h2 className="text-lg font-semibold mt-6 mb-2">Changes</h2>
           <p>
             We may update this Privacy Policy from time to time. The &quot;Last
