@@ -41,61 +41,89 @@ export default function AboutPage() {
     <div className="min-h-screen flex flex-col bg-[var(--background)]">
       <JsonLdWebPage data={jsonLd} />
       <SiteHeader />
-      <main className="flex-1 max-w-3xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main id="main-content" className="flex-1 max-w-3xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 className="text-2xl font-bold text-[var(--foreground)] mb-6">
           About CVEngine
         </h1>
         <div className="text-[var(--foreground)] text-sm leading-relaxed space-y-4">
           <p>
-            CVEngine is a free online <strong>CV builder</strong> and{" "}
-            <strong>resume builder</strong> that turns Markdown into ATS-friendly
-            CV and resume PDFs. No signup, no account, no payment. It&apos;s one of
-            the simplest <strong>free resume generators</strong> and{" "}
-            <strong>free CV generators</strong> for creating a professional,
-            ATS-optimized application.
+            CVEngine is a free online CV and resume builder that converts
+            Markdown into clean, ATS-friendly PDFs and Word (.docx) files. There
+            is no account to create and no payment required — write your CV,
+            preview it, and download it in seconds.
           </p>
+
+          <h2 className="text-lg font-semibold mt-6 mb-2">What CVEngine does</h2>
+          <p>
+            CVEngine takes standard Markdown — plain text with simple formatting
+            like headings, bullet points, and bold — and converts it into a
+            professionally formatted CV. The output is a single-column PDF
+            designed to pass through applicant tracking systems (ATS) without
+            formatting errors, or a Word (.docx) file you can open in Microsoft
+            Word, Google Docs, or LibreOffice.
+          </p>
+          <p>
+            The editor shows a live preview as you type, so you can see exactly
+            what the finished CV will look like before downloading. You can also
+            upload an existing <code className="font-mono text-xs">.md</code> file
+            from your computer and convert it in one click.
+          </p>
+
           <h2 className="text-lg font-semibold mt-6 mb-2">How it works</h2>
           <ol className="list-decimal pl-5 space-y-2">
             <li>
-              <strong>Write or paste</strong> — Type your CV in Markdown in the
-              editor, or upload a .md file.
+              <strong>Write or upload</strong> — Type your CV content directly
+              in the Markdown editor, or upload a <code className="font-mono text-xs">.md</code> file
+              from your device.
             </li>
             <li>
-              <strong>Preview</strong> — See a live preview of how your CV will
-              look as you edit.
+              <strong>Preview live</strong> — The right panel renders your CV in
+              real time so you can check headings, bullet points, and overall
+              layout before downloading.
             </li>
             <li>
-              <strong>Download</strong> — Click &quot;Download ATS PDF&quot; to get a
-              single-column, scannable PDF optimized for applicant tracking
-              systems (ATS).
+              <strong>Download PDF or Word</strong> — Click &quot;Download PDF&quot; for
+              an ATS-optimised single-column PDF, or &quot;Download Word&quot; for a
+              .docx file compatible with any Word processor.
             </li>
           </ol>
+
           <h2 className="text-lg font-semibold mt-6 mb-2">Who it&apos;s for</h2>
           <p>
-            Job seekers, developers, and anyone who prefers writing in Markdown
-            or wants a simple, professional CV without creating an account.
-            CVEngine is best for creating an <strong>ATS resume</strong>, a
-            Markdown-to-PDF CV, a <strong>developer CV</strong> or{" "}
-            <strong>tech resume</strong>, or a quick professional CV for job
-            applications. If you search for terms like &quot;free resume builder&quot;,
-            &quot;online CV maker&quot;, or &quot;ATS-friendly resume&quot;, CVEngine fits
-            that need.
+            CVEngine is useful for anyone who wants a clean, professional CV
+            without the overhead of a complex word processor. It is particularly
+            well suited to:
           </p>
-          <h2 className="text-lg font-semibold mt-6 mb-2">Popular uses</h2>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>Developers and technical writers who are already comfortable with Markdown</li>
+            <li>Recent graduates writing their first CV and wanting a simple starting point</li>
+            <li>Career changers who need to tailor a master CV quickly for multiple applications</li>
+            <li>Anyone who wants an ATS-friendly format without manually managing column layouts or fonts</li>
+          </ul>
+
+          <h2 className="text-lg font-semibold mt-6 mb-2">Other tools</h2>
           <p>
-            People use CVEngine as a <strong>free resume builder</strong> and{" "}
-            <strong>free CV builder</strong> for: first job CV, career change
-            resume, graduate CV, <strong>developer CV</strong>, one-page resume
-            PDF, and <strong>cover letter</strong> writing. The keyword checker
-            helps you match job ad keywords to your CV, and the snippets give you
-            ready-made Markdown sections. Everything is designed to support a
-            strong, scannable <strong>job application CV</strong>.
+            Alongside the CV builder, CVEngine includes a cover letter builder
+            (same Markdown-to-PDF workflow), a keyword checker that compares your
+            CV against a job description, and a snippets library with ready-made
+            Markdown sections for common CV components like Work Experience,
+            Education, and Skills.
           </p>
+
+          <h2 className="text-lg font-semibold mt-6 mb-2">Privacy</h2>
+          <p>
+            CVEngine does not store the content you type in the editor. Your CV
+            text is sent to the server only to generate the PDF and is not
+            retained. No account is required, and no personal data is collected
+            beyond standard analytics. See the{" "}
+            <a href="/privacy" className="text-[var(--accent)] underline">Privacy Policy</a> for
+            full details.
+          </p>
+
           <h2 className="text-lg font-semibold mt-6 mb-2">Contact</h2>
           <p>
-            For questions or feedback about CVEngine, you can reach out via the
-            contact information available on our main site or through our social
-            channels. We do not collect or store your CV content.
+            For questions or feedback, see the{" "}
+            <a href="/contact" className="text-[var(--accent)] underline">Contact page</a>.
           </p>
         </div>
         <FooterNav />

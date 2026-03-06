@@ -7,15 +7,21 @@ const siteUrl =
     : "https://cvengine.space");
 
 export const metadata: Metadata = {
-  title: "Cover Letter from Markdown",
+  title: "Markdown to PDF Cover Letter Builder — Word Download Too",
   description:
-    "Write your cover letter in Markdown, preview live, and download an ATS-friendly PDF. Free, no signup.",
+    "Convert a Markdown (.md) file to an ATS-friendly PDF or Word (.docx) cover letter. Paste or upload your .md file, preview live, download instantly. Free — no signup.",
   alternates: { canonical: `${siteUrl}/cover-letter` },
   openGraph: {
-    title: "Cover Letter | CVEngine",
+    title: "Markdown Cover Letter Builder | CVEngine",
     description:
-      "Write your cover letter in Markdown, preview live, and download an ATS-friendly PDF. Free, no signup.",
+      "Convert a .md file to ATS-friendly PDF or Word cover letter. Live preview, one-click download. Free — no signup.",
     url: `${siteUrl}/cover-letter`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Markdown Cover Letter Builder | CVEngine",
+    description:
+      "Convert Markdown (.md) to ATS-friendly PDF or Word cover letter. Free, no signup.",
   },
 };
 

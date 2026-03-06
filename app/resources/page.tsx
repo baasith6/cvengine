@@ -13,12 +13,12 @@ const siteUrl =
 export const metadata: Metadata = {
   title: "Resources",
   description:
-    "Guides on writing ATS-friendly resumes, using Markdown for your CV, and matching your CV to job descriptions. Free tips from CVEngine.",
+    "Guides on writing ATS-friendly resumes, using Markdown for your CV, matching your CV to job descriptions, and more. Free tips from CVEngine.",
   alternates: { canonical: `${siteUrl}/resources` },
   openGraph: {
     title: "Resources | CVEngine",
     description:
-      "Guides on ATS resumes, Markdown CVs, and job description matching.",
+      "Guides on ATS resumes, Markdown CVs, cover letters, and job application tips.",
     url: `${siteUrl}/resources`,
   },
 };
@@ -54,6 +54,30 @@ const ARTICLES = [
     description:
       "What to include, structure, and how to get an ATS-ready PDF for your first CV.",
   },
+  {
+    slug: "cv-summary",
+    title: "How to write a CV summary or personal statement",
+    description:
+      "Write a strong opening summary that grabs attention and sets the tone for the rest of your CV.",
+  },
+  {
+    slug: "cv-vs-resume",
+    title: "CV vs resume: what is the difference?",
+    description:
+      "When to use a CV, when to use a resume, and how the two documents differ by country and context.",
+  },
+  {
+    slug: "cv-mistakes",
+    title: "Common CV mistakes to avoid",
+    description:
+      "Formatting and content errors that cost candidates interviews — and how to fix them before you apply.",
+  },
+  {
+    slug: "how-to-write-cover-letter",
+    title: "How to write a cover letter",
+    description:
+      "Structure, examples, and tips for writing a cover letter that complements your CV and gets read.",
+  },
 ];
 
 export default function ResourcesPage() {
@@ -61,7 +85,7 @@ export default function ResourcesPage() {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "Resources | CVEngine",
-    description: "Guides on ATS resumes, Markdown CVs, and job applications.",
+    description: "Guides on ATS resumes, Markdown CVs, cover letters, and job applications.",
     url: `${siteUrl}/resources`,
   };
 
@@ -74,7 +98,7 @@ export default function ResourcesPage() {
           Resources
         </h1>
         <p className="text-[var(--muted)] text-sm mb-8">
-          Short guides to help you build a stronger, ATS-friendly CV.
+          Practical guides to help you write a stronger CV, pass ATS filters, and put together a complete job application.
         </p>
         <ul className="space-y-6">
           {ARTICLES.map((article) => (

@@ -19,7 +19,7 @@ const geistMono = localFont({
 
 const siteName = "CVEngine";
 const tagline =
-  "Free online tool to build ATS-friendly CVs and resumes from Markdown. Paste or upload .md, preview live, download PDF. No signup.";
+  "Convert a Markdown (.md) file to an ATS-friendly PDF or Word CV — free. Paste or upload your .md file, preview live, download PDF or Word (.docx) instantly. No signup.";
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
   (typeof process.env.VERCEL_URL === "string"
@@ -29,11 +29,24 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${siteName} — ATS-Friendly CV & Resume from Markdown`,
+    default: `${siteName} — Markdown to PDF & Word CV Builder`,
     template: `%s | ${siteName}`,
   },
   description: tagline,
   keywords: [
+    // Conversion queries — the primary gap being fixed
+    "markdown to PDF",
+    "markdown to Word",
+    "markdown to docx",
+    "md to pdf",
+    "md to word",
+    "md file to pdf",
+    ".md to pdf",
+    "convert markdown to CV",
+    "markdown to resume",
+    "markdown file converter",
+    "md to cv",
+    // CV / resume builder queries
     "CV builder",
     "resume builder",
     "free resume builder",
@@ -46,6 +59,8 @@ export const metadata: Metadata = {
     "free CV generator",
     "free resume generator",
     "PDF resume",
+    "Word resume",
+    "docx resume",
     "online CV maker",
     "professional resume",
     "applicant tracking system",
@@ -64,20 +79,20 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName,
-    title: `${siteName} — ATS-Friendly CV & Resume from Markdown`,
+    title: `${siteName} — Markdown to PDF & Word CV Builder`,
     description: tagline,
     images: [
       {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: `${siteName} - Build ATS-friendly CVs from Markdown`,
+        alt: `${siteName} - Convert Markdown to ATS-friendly PDF or Word CV`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteName} — ATS-Friendly CV from Markdown`,
+    title: `${siteName} — Markdown to PDF & Word CV Builder`,
     description: tagline,
   },
   robots: {
@@ -123,20 +138,16 @@ const jsonLdWebApp = {
     priceCurrency: "USD",
   },
   featureList: [
-    "Write your CV in Markdown",
+    "Convert Markdown (.md) to ATS-friendly PDF",
+    "Convert Markdown (.md) to Word (.docx)",
+    "Upload .md file and preview instantly",
     "Live preview as you type",
-    "Download ATS-friendly PDF",
     "No signup required",
     "Free to use",
     "Cover letter builder",
     "Keyword checker for job applications",
     "CV snippet templates",
   ],
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5",
-    ratingCount: "1",
-  },
 };
 
 const jsonLdHowTo = {
@@ -307,6 +318,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Prevent theme flash: apply saved preference before first paint */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('cvengine_theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebApp) }}
@@ -327,6 +344,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* Skip-to-content for keyboard / screen-reader users */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-[var(--accent)] focus:text-white focus:font-semibold focus:shadow-lg"
+        >
+          Skip to content
+        </a>
         <CookieConsentProvider gaId={gaId}>
           {children}
           <AdSenseSlot />

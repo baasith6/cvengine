@@ -55,7 +55,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col bg-[var(--background)]">
       <SiteHeader />
-      <main className="flex-1 max-w-4xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <main id="main-content" className="flex-1 max-w-4xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         {/* Hero: one primary CTA */}
         <div className="text-center mb-16">
           <h1 className="text-3xl sm:text-4xl font-bold text-[var(--foreground)] tracking-tight mb-3">

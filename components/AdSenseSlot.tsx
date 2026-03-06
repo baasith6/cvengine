@@ -55,7 +55,8 @@ export default function AdSenseSlot() {
   if (hasConsent !== true) return null;
 
   return (
-    <div className="ad-slot-wrapper my-6 flex justify-center w-full min-w-0">
+    /* min-height reserves space before the ad loads, preventing layout shift (CLS) */
+    <div className="ad-slot-wrapper my-6 flex justify-center w-full min-w-0" style={{ minHeight: 90 }}>
       <ins
         ref={insRef}
         className="adsbygoogle"

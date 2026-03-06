@@ -23,7 +23,7 @@ export default function SnippetsPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[var(--background)]">
       <SiteHeader />
-      <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main id="main-content" className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <BackToTools />
         <div className="mb-8 text-center">
           <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] tracking-tight">
@@ -50,9 +50,9 @@ export default function SnippetsPage() {
                     className="rounded-2xl border border-[var(--card-border)] bg-[var(--card)] p-5 shadow-sm hover:shadow-md transition-shadow"
                   >
               <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
-                <h2 className="text-lg font-semibold text-[var(--foreground)]">
+                <h3 className="text-lg font-semibold text-[var(--foreground)]">
                   {snippet.title}
-                </h2>
+                </h3>
                 <button
                   type="button"
                   onClick={() => copyToClipboard(snippet.markdown, snippet.id)}

@@ -14,6 +14,7 @@ export default function DownloadWordButton({
   downloadFilename = "cv-ats.docx",
 }: DownloadWordButtonProps) {
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleDownload = async () => {
@@ -22,6 +23,7 @@ export default function DownloadWordButton({
       return;
     }
     setError(null);
+    setSuccess(false);
     setLoading(true);
     try {
       const res = await fetch("/api/export-docx", {
@@ -40,6 +42,8 @@ export default function DownloadWordButton({
       a.download = downloadFilename;
       a.click();
       URL.revokeObjectURL(url);
+      setSuccess(true);
+      setTimeout(() => setSuccess(false), 2500);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Download failed.");
     } finally {
@@ -63,6 +67,13 @@ export default function DownloadWordButton({
             </svg>
             Generating…
           </>
+        ) : success ? (
+          <>
+            <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+            Downloaded!
+          </>
         ) : (
           <>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
@@ -75,6 +86,10 @@ export default function DownloadWordButton({
       {error && (
         <p className="text-sm text-red-500 dark:text-red-400">{error}</p>
       )}
+      {/* Screen-reader announcement */}
+      <span role="status" aria-live="polite" className="sr-only">
+        {success ? "Word document downloaded." : error ? `Error: ${error}` : ""}
+      </span>
     </div>
   );
 }

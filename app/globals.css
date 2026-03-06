@@ -2,18 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Refined teal theme – professional, calm, one clear accent */
+/*
+  Teal theme – professional, calm, one clear accent.
+  Light accent changed from #0d9488 (3.7:1 on white, fails AA)
+  to #0f766e (5.5:1 on white, passes AA).
+*/
+
+/* ── Default (light) ─────────────────────────────────── */
 :root {
   --background: #f1f5f9;
   --foreground: #0f172a;
   --card: #ffffff;
   --card-border: #e2e8f0;
-  --accent: #0d9488;
-  --accent-hover: #0f766e;
+  --accent: #0f766e;        /* was #0d9488 – now 5.5:1 on white ✓ */
+  --accent-hover: #0d5e57;  /* was #0f766e */
   --accent-secondary: #64748b;
   --muted: #475569;
 }
 
+/* ── OS dark preference ──────────────────────────────── */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0f172a;
@@ -27,13 +34,37 @@
   }
 }
 
+/* ── Manual overrides via data-theme attribute ───────── */
+/* These must come AFTER the media query to override it. */
+[data-theme="light"] {
+  --background: #f1f5f9;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-border: #e2e8f0;
+  --accent: #0f766e;
+  --accent-hover: #0d5e57;
+  --accent-secondary: #64748b;
+  --muted: #475569;
+}
+
+[data-theme="dark"] {
+  --background: #0f172a;
+  --foreground: #f1f5f9;
+  --card: #1e293b;
+  --card-border: #334155;
+  --accent: #2dd4bf;
+  --accent-hover: #5eead4;
+  --accent-secondary: #94a3b8;
+  --muted: #94a3b8;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
 
-/* Subtle gradient for depth and a more memorable feel */
+/* Subtle gradient for depth */
 body {
   background-image: linear-gradient(
     180deg,
@@ -49,7 +80,7 @@ body {
   }
 }
 
-/* Shared card style for consistency */
+/* Shared card style */
 .card-elevated {
   border-radius: 1rem;
   border: 1px solid var(--card-border);
@@ -60,7 +91,7 @@ body {
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.07);
 }
 
-/* Subtle grid pattern for depth (optional) */
+/* Subtle grid pattern */
 .bg-grid {
   background-image:
     linear-gradient(to right, var(--card-border) 1px, transparent 1px),

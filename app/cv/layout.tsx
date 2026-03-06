@@ -7,15 +7,21 @@ const siteUrl =
     : "https://cvengine.space");
 
 export const metadata: Metadata = {
-  title: "Build CV",
+  title: "Markdown to PDF CV Builder — ATS Resume & Word Download",
   description:
-    "Build your ATS-friendly CV from Markdown. Live preview, one-click PDF download. Free, no signup.",
+    "Convert a Markdown (.md) file to an ATS-friendly PDF or Word (.docx) CV. Paste or upload your .md file, live preview, download instantly. Free — no signup.",
   alternates: { canonical: `${siteUrl}/cv` },
   openGraph: {
-    title: "Build CV | CVEngine",
+    title: "Markdown to PDF CV Builder | CVEngine",
     description:
-      "Build your ATS-friendly CV from Markdown. Live preview, one-click PDF download. Free, no signup.",
+      "Convert a .md file to ATS-friendly PDF or Word (.docx) CV. Live preview, one-click download. Free — no signup.",
     url: `${siteUrl}/cv`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Markdown to PDF CV Builder | CVEngine",
+    description:
+      "Convert Markdown (.md) to ATS-friendly PDF or Word CV. Free, no signup.",
   },
 };
 

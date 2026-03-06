@@ -9,7 +9,7 @@ export default function FooterNav() {
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
         <span className="text-[var(--muted)] font-medium">Tools</span>
         <Link href="/cv" className="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline">
-          CV
+          CV builder
         </Link>
         <Link href="/cover-letter" className="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline">
           Cover letter
@@ -19,6 +19,15 @@ export default function FooterNav() {
         </Link>
         <Link href="/snippets" className="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline">
           Snippets
+        </Link>
+      </div>
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+        <span className="text-[var(--muted)] font-medium">Convert</span>
+        <Link href="/markdown-to-pdf" className="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline">
+          Markdown to PDF
+        </Link>
+        <Link href="/markdown-to-word" className="text-[var(--accent)] hover:text-[var(--accent-hover)] hover:underline">
+          Markdown to Word
         </Link>
       </div>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
