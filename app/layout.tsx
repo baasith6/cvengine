@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { CookieConsentProvider } from "@/components/CookieConsentContext";
 import AdSenseSlot from "@/components/AdSenseSlot";
+import Telemetry from "@/components/Telemetry";
 import "./globals.css";
 
 const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-6Y49J37KJH";
@@ -81,14 +82,6 @@ export const metadata: Metadata = {
     siteName,
     title: `${siteName} — Markdown to PDF & Word CV Builder`,
     description: tagline,
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: `${siteName} - Convert Markdown to ATS-friendly PDF or Word CV`,
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -155,7 +148,6 @@ const jsonLdHowTo = {
   "@type": "HowTo",
   name: "How to Build an ATS-Friendly CV with CVEngine",
   description: "Step-by-step guide to create an ATS-friendly CV from Markdown using CVEngine",
-  image: `${siteUrl}/og.png`,
   totalTime: "PT15M",
   step: [
     {
@@ -316,7 +308,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Prevent theme flash: apply saved preference before first paint */}
         <script
@@ -353,6 +345,7 @@ export default function RootLayout({
         </a>
         <CookieConsentProvider gaId={gaId}>
           {children}
+          <Telemetry />
           <AdSenseSlot />
         </CookieConsentProvider>
       </body>

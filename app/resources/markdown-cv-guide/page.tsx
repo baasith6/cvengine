@@ -58,7 +58,7 @@ export default function MarkdownCvGuidePage() {
           </svg>
           Resources
         </Link>
-        <article>
+        <article className="anim-fade-in-up">
           <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-6">
             Why use Markdown (.md) for your CV — and how to convert it to PDF or Word
           </h1>

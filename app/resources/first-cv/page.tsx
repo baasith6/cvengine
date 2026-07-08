@@ -50,7 +50,7 @@ export default function FirstCvPage() {
           </svg>
           Resources
         </Link>
-        <article>
+        <article className="anim-fade-in-up">
           <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-6">
             Writing your first CV: a simple guide
           </h1>

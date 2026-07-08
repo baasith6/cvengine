@@ -50,7 +50,7 @@ export default function OnePageResumePage() {
           </svg>
           Resources
         </Link>
-        <article>
+        <article className="anim-fade-in-up">
           <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-6">
             One-page resume: when and how
           </h1>

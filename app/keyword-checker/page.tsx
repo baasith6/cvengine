@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -9,111 +9,153 @@ import { checkKeywords } from "@/lib/keyword-check";
 
 type Result = ReturnType<typeof checkKeywords>;
 
-function ScoreRing({ score }: { score: number }) {
-  const color =
-    score >= 70 ? "text-emerald-500" : score >= 40 ? "text-amber-500" : "text-red-500";
-  return (
-    <div className={`text-4xl font-bold tabular-nums ${color}`}>
-      {score}%
-    </div>
-  );
-}
-
-function KeywordChips({ words, variant }: { words: string[]; variant: "match" | "missing" }) {
-  const base =
-    variant === "match"
-      ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300"
-      : "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300";
-
-  if (words.length === 0) return null;
-
-  return (
-    <div className="flex flex-wrap gap-1.5 mt-2">
-      {words.map((w) => (
-        <span
-          key={w}
-          className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${base}`}
-        >
-          {w}
-        </span>
-      ))}
-    </div>
-  );
+function getScoreMeta(pct: number): { label: string; text: string; bg: string } {
+  if (pct >= 75) return { label: "Strong Match", text: "var(--success)", bg: "rgba(22, 163, 74, 0.08)" };
+  if (pct >= 50) return { label: "Good Match",   text: "var(--accent)",  bg: "var(--accent-bg)" };
+  if (pct >= 25) return { label: "Fair Match",   text: "var(--warning)", bg: "rgba(217, 119, 6, 0.08)" };
+  return              { label: "Weak Match",   text: "var(--danger)",  bg: "rgba(220, 38, 38, 0.08)" };
 }
 
 function ResultsPanel({ result }: { result: Result }) {
   const total = result.inCv.length + result.missing.length;
   const score = total > 0 ? Math.round((result.inCv.length / total) * 100) : 0;
+  const { label, text, bg } = getScoreMeta(score);
+  const hasPhrase = result.phrasesInCv.length > 0 || result.phrasesMissing.length > 0;
 
   return (
-    <div className="mt-8 rounded-2xl border border-[var(--card-border)] bg-[var(--card)] p-6 shadow-sm space-y-6">
-      <h2 className="text-lg font-semibold text-[var(--foreground)]">Results</h2>
+    <div
+      className="anim-slide-down"
+      style={{
+        marginTop: 24,
+        borderRadius: 8,
+        border: "1px solid var(--border)",
+        background: "var(--surface)",
+        padding: 24,
+        display: "flex",
+        flexDirection: "column",
+        gap: 20,
+      }}
+    >
+      <h2 style={{ fontSize: 16, fontWeight: 700, color: "var(--text)", margin: 0 }}>Analysis Results</h2>
 
-      {/* Score + stats row */}
-      <div className="flex flex-wrap items-center gap-6">
-        <div className="flex flex-col items-center gap-0.5">
-          <ScoreRing score={score} />
-          <p className="text-xs text-[var(--muted)]">match score</p>
+      {/* Score + stats */}
+      <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 32 }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <span style={{ fontSize: 36, fontWeight: 800, color: text, lineHeight: 1 }}>{score}%</span>
+          <span style={{ fontSize: 11, fontWeight: 600, color: text, background: bg, padding: "2px 6px", borderRadius: 4, marginTop: 6 }}>
+            {label}
+          </span>
         </div>
-        <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
+        
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px 32px", fontSize: 13 }}>
           <div>
-            <p className="text-[var(--muted)]">Job ad</p>
-            <p className="font-medium text-[var(--foreground)]">
-              {result.jobWordCount} words · {result.jobCharCount} chars
-            </p>
+            <span style={{ color: "var(--text-muted)", display: "block", marginBottom: 2 }}>Job Posting</span>
+            <span style={{ fontWeight: 600, color: "var(--text)" }}>{result.jobWordCount} words</span>
           </div>
           <div>
-            <p className="text-[var(--muted)]">Your CV</p>
-            <p className="font-medium text-[var(--foreground)]">
-              {result.cvWordCount} words · {result.cvCharCount} chars
-            </p>
+            <span style={{ color: "var(--text-muted)", display: "block", marginBottom: 2 }}>Your CV</span>
+            <span style={{ fontWeight: 600, color: "var(--text)" }}>{result.cvWordCount} words</span>
           </div>
           <div>
-            <p className="text-[var(--muted)]">Keywords found</p>
-            <p className="font-medium text-emerald-600 dark:text-emerald-400">
-              {result.inCv.length} / {total}
-            </p>
+            <span style={{ color: "var(--text-muted)", display: "block", marginBottom: 2 }}>Keywords Found</span>
+            <span style={{ fontWeight: 600, color: "var(--success)" }}>{result.inCv.length} / {total}</span>
           </div>
           <div>
-            <p className="text-[var(--muted)]">Keywords missing</p>
-            <p className="font-medium text-red-600 dark:text-red-400">
+            <span style={{ color: "var(--text-muted)", display: "block", marginBottom: 2 }}>Keywords Missing</span>
+            <span style={{ fontWeight: 600, color: result.missing.length > 0 ? "var(--danger)" : "var(--text-muted)" }}>
               {result.missing.length} / {total}
-            </p>
+            </span>
           </div>
         </div>
       </div>
 
-      {/* Matched keywords */}
-      {result.inCv.length > 0 && (
-        <div>
-          <p className="text-sm font-semibold text-[var(--foreground)]">
-            Found in your CV{" "}
-            <span className="font-normal text-[var(--muted)]">({result.inCv.length})</span>
-          </p>
-          <KeywordChips words={result.inCv} variant="match" />
+      {/* Progress Bar */}
+      <div>
+        <div style={{ width: "100%", height: 6, background: "var(--border)", borderRadius: 3, overflow: "hidden" }}>
+          <div style={{ height: "100%", background: text, width: `${score}%`, transition: "width 0.4s ease" }} />
+        </div>
+      </div>
+
+      {/* Key Phrases */}
+      {hasPhrase && (
+        <div style={{ border: "1px solid var(--border)", borderRadius: 6, background: "var(--surface-raised)", padding: 16, display: "flex", flexDirection: "column", gap: 14 }}>
+          <span style={{ fontSize: 11, fontWeight: 600, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.04em" }}>
+            Key Phrases (Multi-Word)
+          </span>
+          
+          {result.phrasesInCv.length > 0 && (
+            <div>
+              <span style={{ fontSize: 12.5, fontWeight: 600, color: "var(--text)", display: "block", marginBottom: 6 }}>
+                Phrases Found ({result.phrasesInCv.length})
+              </span>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+                {result.phrasesInCv.map((ph) => (
+                  <span key={ph} style={{ fontSize: 11, background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 4, padding: "2px 8px", color: "var(--text-muted)" }}>
+                    {ph}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {result.phrasesMissing.length > 0 && (
+            <div>
+              <span style={{ fontSize: 12.5, fontWeight: 600, color: "var(--text)", display: "block", marginBottom: 6 }}>
+                Phrases Missing ({result.phrasesMissing.length})
+              </span>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+                {result.phrasesMissing.map((ph) => (
+                  <span key={ph} style={{ fontSize: 11, background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 4, padding: "2px 8px", color: "var(--accent)" }}>
+                    {ph}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
-      {/* Missing keywords */}
-      <div>
-        <p className="text-sm font-semibold text-[var(--foreground)]">
-          Missing from your CV{" "}
-          <span className="font-normal text-[var(--muted)]">({result.missing.length})</span>
-        </p>
+      {/* Single Keywords Found */}
+      {result.inCv.length > 0 && (
+        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+          <span style={{ fontSize: 12.5, fontWeight: 600, color: "var(--text)", display: "block" }}>
+            Keywords Found ({result.inCv.length})
+          </span>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+            {result.inCv.map((w) => (
+              <span key={w} style={{ fontSize: 11, fontFamily: "ui-monospace, monospace", background: "var(--surface-raised)", border: "1px solid var(--border)", borderRadius: 4, padding: "2px 8px", color: "var(--text-muted)" }}>
+                {w}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Single Keywords Missing */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+        <span style={{ fontSize: 12.5, fontWeight: 600, color: "var(--text)", display: "block" }}>
+          Keywords Missing ({result.missing.length})
+        </span>
         {result.missing.length > 0 ? (
           <>
-            <KeywordChips words={result.missing} variant="missing" />
-            <p className="text-xs text-[var(--muted)] mt-3">
-              Consider adding these keywords naturally to your CV, then{" "}
-              <Link href="/cv" className="text-[var(--accent)] underline">
-                rebuild it
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+              {result.missing.map((w) => (
+                <span key={w} style={{ fontSize: 11, fontFamily: "ui-monospace, monospace", background: "var(--surface-raised)", border: "1px solid var(--border)", borderRadius: 4, padding: "2px 8px", color: "var(--accent)" }}>
+                  {w}
+                </span>
+              ))}
+            </div>
+            <p style={{ fontSize: 12, color: "var(--text-muted)", margin: "8px 0 0" }}>
+              Try inserting these terms naturally into your CV in the{" "}
+              <Link href="/cv" style={{ color: "var(--accent)", textDecoration: "underline" }}>
+                CV Builder
               </Link>
               .
             </p>
           </>
         ) : (
-          <p className="text-sm text-emerald-600 dark:text-emerald-400 mt-1">
-            All job keywords appear in your CV.
+          <p style={{ fontSize: 12.5, color: "var(--success)", fontWeight: 500, margin: 0 }}>
+            ✓ Perfect! Your CV includes all targeted single keywords.
           </p>
         )}
       </div>
@@ -132,43 +174,71 @@ export default function KeywordCheckerPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--background)]">
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", background: "var(--bg)" }}>
       <SiteHeader />
-      <main id="main-content" className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      
+      <main style={{ flex: 1, maxWidth: 800, width: "100%", margin: "0 auto", padding: "32px 24px 64px" }}>
         <BackToTools />
-        <div className="mb-8 text-center">
-          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] tracking-tight">
-            CV keyword checker
+        
+        <div style={{ marginBottom: 32 }} className="anim-fade-in-up">
+          <h1 style={{ fontSize: 24, fontWeight: 800, color: "var(--text)", letterSpacing: "-0.02em", margin: "0 0 8px" }}>
+            CV Keyword Checker
           </h1>
-          <p className="text-[var(--muted)] text-sm mt-2 max-w-xl mx-auto">
-            Paste the job ad and your CV. See which keywords match and which are missing.
-            All in your browser—nothing is sent to our server.
+          <p style={{ fontSize: 14, color: "var(--text-muted)", lineHeight: 1.5, margin: 0 }}>
+            Compare your CV plain text against a target job posting to isolate missing credentials, technical terms, and industry jargon.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div className="flex flex-col">
-            <label htmlFor="job-ad" className="text-sm font-medium text-[var(--foreground)] mb-2">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 16, marginBottom: 20 }} className="md:grid-cols-2">
+          {/* Job description input */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            <label htmlFor="job-ad" style={{ fontSize: 12, fontWeight: 600, color: "var(--text-muted)", textTransform: "uppercase" }}>
               Job description
             </label>
             <textarea
               id="job-ad"
-              className="flex-1 min-h-[180px] p-4 rounded-xl border border-[var(--card-border)] bg-[var(--card)] text-[var(--foreground)] placeholder:text-[var(--muted)] text-sm resize-y focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent outline-none transition-shadow"
-              placeholder="Paste the job posting here..."
               value={jobAd}
               onChange={(e) => setJobAd(e.target.value)}
+              placeholder="Paste the job listing requirements here..."
+              style={{
+                width: "100%",
+                minHeight: 180,
+                fontSize: 13,
+                padding: 12,
+                borderRadius: 6,
+                border: "1px solid var(--border)",
+                background: "var(--surface)",
+                color: "var(--text)",
+                outline: "none",
+                resize: "vertical",
+                lineHeight: 1.5,
+              }}
             />
           </div>
-          <div className="flex flex-col">
-            <label htmlFor="cv-text" className="text-sm font-medium text-[var(--foreground)] mb-2">
-              Your CV (plain text)
+
+          {/* CV plain text input */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            <label htmlFor="cv-text" style={{ fontSize: 12, fontWeight: 600, color: "var(--text-muted)", textTransform: "uppercase" }}>
+              Your CV (Plain Text)
             </label>
             <textarea
               id="cv-text"
-              className="flex-1 min-h-[180px] p-4 rounded-xl border border-[var(--card-border)] bg-[var(--card)] text-[var(--foreground)] placeholder:text-[var(--muted)] text-sm resize-y focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent outline-none transition-shadow"
-              placeholder="Paste your CV text here..."
               value={cvText}
               onChange={(e) => setCvText(e.target.value)}
+              placeholder="Copy and paste your plain CV text here..."
+              style={{
+                width: "100%",
+                minHeight: 180,
+                fontSize: 13,
+                padding: 12,
+                borderRadius: 6,
+                border: "1px solid var(--border)",
+                background: "var(--surface)",
+                color: "var(--text)",
+                outline: "none",
+                resize: "vertical",
+                lineHeight: 1.5,
+              }}
             />
           </div>
         </div>
@@ -177,14 +247,36 @@ export default function KeywordCheckerPage() {
           type="button"
           onClick={runCheck}
           disabled={!jobAd.trim() || !cvText.trim()}
-          className="px-5 py-2.5 rounded-xl bg-[var(--accent)] text-white font-medium hover:bg-[var(--accent-hover)] transition-colors shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            padding: "8px 20px",
+            borderRadius: 6,
+            fontSize: 14,
+            fontWeight: 600,
+            color: "#ffffff",
+            background: "var(--accent)",
+            border: "none",
+            cursor: "pointer",
+            transition: "background 0.15s",
+          }}
+          onMouseEnter={(e) => {
+            if (jobAd.trim() && cvText.trim()) {
+              (e.currentTarget as HTMLElement).style.background = "var(--accent-hover)";
+            }
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLElement).style.background = "var(--accent)";
+          }}
         >
-          Check keywords
+          Check Keywords
         </button>
 
         {result && <ResultsPanel result={result} />}
 
-        <FooterNav />
+        <footer style={{ borderTop: "1px solid var(--border)", padding: "24px 0", background: "var(--surface)", marginTop: 48 }}>
+          <FooterNav />
+        </footer>
       </main>
     </div>
   );

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+"use client";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import FooterNav from "@/components/FooterNav";
@@ -9,38 +9,6 @@ const siteUrl =
   (typeof process.env.VERCEL_URL === "string"
     ? `https://${process.env.VERCEL_URL}`
     : "https://cvengine.space");
-
-export const metadata: Metadata = {
-  title: "Markdown to Word (.docx) Converter — Free CV Download",
-  description:
-    "Convert Markdown (.md) to a Word (.docx) CV or resume instantly. Paste or upload your .md file, preview live, download .docx. Free — no signup required.",
-  alternates: { canonical: `${siteUrl}/markdown-to-word` },
-  keywords: [
-    "markdown to word",
-    "markdown to docx",
-    "md to word",
-    "md to docx",
-    ".md to word",
-    "md file to docx",
-    "markdown to word converter",
-    "convert markdown to word",
-    "markdown resume word",
-    "markdown CV docx",
-    "markdown to microsoft word",
-  ],
-  openGraph: {
-    title: "Markdown to Word (.docx) Converter | CVEngine",
-    description:
-      "Convert a .md file to a Word (.docx) CV. Paste or upload Markdown, preview live, download .docx instantly. Free — no signup.",
-    url: `${siteUrl}/markdown-to-word`,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Markdown to Word (.docx) Converter | CVEngine",
-    description:
-      "Convert Markdown to Word (.docx) CV. Free — no signup.",
-  },
-};
 
 const HOW_IT_WORKS = [
   {
@@ -56,18 +24,18 @@ const HOW_IT_WORKS = [
   {
     n: "3",
     title: "Download Word (.docx)",
-    body: 'Click "Download Word" to convert your Markdown to a .docx file instantly. The Word document preserves headings (H1–H3), bullet lists, and bold text — ready to submit to recruiters or edit further in Microsoft Word or Google Docs.',
+    body: 'Click "Download Word" to convert your Markdown to a .docx file instantly. The Word document preserves headings (H1â€“H3), bullet lists, and bold text â€” ready to submit to recruiters or edit further in Microsoft Word or Google Docs.',
   },
 ];
 
 const FAQ = [
   {
     q: "What Markdown elements are converted to Word?",
-    a: "CVEngine converts: # H1 → Heading 1, ## H2 → Heading 2, ### H3 → Heading 3, - bullet points → Word bullet list, and **bold** → bold text. Links and plain paragraphs are also supported.",
+    a: "CVEngine converts: # H1 â†’ Heading 1, ## H2 â†’ Heading 2, ### H3 â†’ Heading 3, - bullet points â†’ Word bullet list, and **bold** â†’ bold text. Links and plain paragraphs are also supported.",
   },
   {
     q: "Is the Markdown to Word conversion free?",
-    a: "Yes — completely free. No account, no signup, no payment. Paste your .md content and download the .docx file immediately.",
+    a: "Yes â€” completely free. No account, no signup, no payment. Paste your .md content and download the .docx file immediately.",
   },
   {
     q: "Can I open the .docx file in Google Docs?",
@@ -87,9 +55,9 @@ export default function MarkdownToWordPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "Markdown to Word (.docx) Converter — Free CV Download",
+    name: "Markdown to Word (.docx) Converter â€” Free CV Download",
     description:
-      "Convert Markdown (.md) to a Word (.docx) CV or resume instantly. Free — no signup.",
+      "Convert Markdown (.md) to a Word (.docx) CV or resume instantly. Free â€” no signup.",
     url: `${siteUrl}/markdown-to-word`,
   };
 
@@ -104,7 +72,7 @@ export default function MarkdownToWordPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--background)]">
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", background: "var(--bg)" }}>
       <JsonLdWebPage data={jsonLd} />
       <script
         type="application/ld+json"
@@ -112,44 +80,66 @@ export default function MarkdownToWordPage() {
       />
       <SiteHeader />
 
-      <main id="main-content" className="flex-1 max-w-3xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
-
+      <main style={{ flex: 1, maxWidth: 640, width: "100%", margin: "0 auto", padding: "48px 24px 64px" }} className="anim-fade-in-up">
         {/* Hero */}
-        <div className="mb-10 text-center">
-          <h1 className="text-3xl sm:text-4xl font-bold text-[var(--foreground)] tracking-tight mb-3">
-            Markdown to Word (.docx)
+        <div style={{ textAlign: "center", marginBottom: 48 }}>
+          <h1 style={{ fontSize: 28, fontWeight: 800, color: "var(--text)", letterSpacing: "-0.02em", margin: "0 0 12px" }}>
+            Markdown to Word
           </h1>
-          <p className="text-[var(--muted)] text-base max-w-xl mx-auto mb-2">
-            Convert a <code className="font-[family-name:var(--font-geist-mono)] text-sm bg-[var(--card-border)]/60 px-1.5 py-0.5 rounded">.md</code> file to a Word <code className="font-[family-name:var(--font-geist-mono)] text-sm bg-[var(--card-border)]/60 px-1.5 py-0.5 rounded">.docx</code> CV or resume. Free — no signup.
-          </p>
-          <p className="text-[var(--muted)] text-sm max-w-xl mx-auto mb-8">
-            Paste your Markdown content, preview live, and download a Word document compatible with Microsoft Word, Google Docs, and LibreOffice.
+          <p style={{ fontSize: 14, color: "var(--text-muted)", lineHeight: 1.6, maxWidth: 520, margin: "0 auto 24px" }}>
+            Convert your <code style={{ fontFamily: "ui-monospace, monospace", fontSize: 12, background: "var(--surface-raised)", border: "1px solid var(--border)", padding: "2px 4px", borderRadius: 4 }}>.md</code> file directly to a clean Word <code style={{ fontFamily: "ui-monospace, monospace", fontSize: 12, background: "var(--surface-raised)", border: "1px solid var(--border)", padding: "2px 4px", borderRadius: 4 }}>.docx</code> file. Free, client-side, and private.
           </p>
           <Link
             href="/cv"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-lg font-semibold text-white bg-[var(--accent)] hover:bg-[var(--accent-hover)] shadow-lg hover:shadow-xl transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              padding: "8px 20px",
+              borderRadius: 6,
+              fontSize: 14,
+              fontWeight: 600,
+              color: "#ffffff",
+              background: "var(--accent)",
+              textDecoration: "none",
+              transition: "background 0.15s",
+            }}
+            onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.background = "var(--accent-hover)"}
+            onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.background = "var(--accent)"}
           >
-            Convert Markdown to Word
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            Start Building Free
+            <svg width={14} height={14} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </Link>
         </div>
 
         {/* How it works */}
-        <section className="mb-12">
-          <h2 className="text-xl font-bold text-[var(--foreground)] mb-6">
-            How to convert Markdown to Word
+        <section style={{ marginBottom: 48 }}>
+          <h2 style={{ fontSize: 16, fontWeight: 700, color: "var(--text)", margin: "0 0 20px" }}>
+            How to Convert Markdown to Word
           </h2>
-          <div className="space-y-6">
+          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             {HOW_IT_WORKS.map((step) => (
-              <div key={step.n} className="flex gap-4">
-                <div className="shrink-0 w-10 h-10 rounded-xl bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center font-bold text-lg">
+              <div key={step.n} style={{ display: "flex", gap: 16 }}>
+                <div style={{
+                  flexShrink: 0,
+                  width: 32,
+                  height: 32,
+                  borderRadius: 6,
+                  background: "var(--accent-bg)",
+                  color: "var(--accent-text)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontWeight: 700,
+                  fontSize: 14,
+                }}>
                   {step.n}
                 </div>
                 <div>
-                  <h3 className="text-base font-semibold text-[var(--foreground)] mb-1">{step.title}</h3>
-                  <p className="text-sm text-[var(--muted)] leading-relaxed">{step.body}</p>
+                  <h3 style={{ fontSize: 14, fontWeight: 650, color: "var(--text)", margin: "0 0 4px" }}>{step.title}</h3>
+                  <p style={{ fontSize: 13, color: "var(--text-muted)", lineHeight: 1.5, margin: 0 }}>{step.body}</p>
                 </div>
               </div>
             ))}
@@ -157,41 +147,36 @@ export default function MarkdownToWordPage() {
         </section>
 
         {/* PDF vs Word */}
-        <section className="mb-12 rounded-2xl border border-[var(--card-border)] bg-[var(--card)] p-6 sm:p-8 shadow-sm">
-          <h2 className="text-lg font-semibold text-[var(--foreground)] mb-3">
-            PDF vs Word — which should I use?
+        <section style={{ border: "1px solid var(--border)", borderRadius: 8, background: "var(--surface)", padding: 20, marginBottom: 48 }}>
+          <h2 style={{ fontSize: 14, fontWeight: 700, color: "var(--text)", margin: "0 0 12px" }}>
+            PDF vs Word â€” Which should I use?
           </h2>
-          <div className="grid sm:grid-cols-2 gap-4 text-sm">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 16 }} className="sm:grid-cols-2">
             <div>
-              <p className="font-semibold text-[var(--foreground)] mb-2">Use PDF when:</p>
-              <ul className="list-disc pl-4 space-y-1 text-[var(--muted)]">
-                <li>Applying through an online portal that accepts PDF</li>
-                <li>You want to preserve your exact formatting</li>
-                <li>The job posting doesn&apos;t specify a format</li>
-                <li>You&apos;re sending directly to a recruiter by email</li>
+              <p style={{ fontSize: 13, fontWeight: 700, color: "var(--text)", margin: "0 0 6px" }}>Use PDF when:</p>
+              <ul style={{ paddingLeft: 16, listStyleType: "disc", fontSize: 12.5, color: "var(--text-muted)", display: "flex", flexDirection: "column", gap: 4 }}>
+                <li>Applying through portals that parse PDFs.</li>
+                <li>You want to preserve strict layout formatting.</li>
+                <li>The job posting doesn&apos;t specify a format.</li>
               </ul>
             </div>
             <div>
-              <p className="font-semibold text-[var(--foreground)] mb-2">Use Word (.docx) when:</p>
-              <ul className="list-disc pl-4 space-y-1 text-[var(--muted)]">
-                <li>The recruiter or system explicitly asks for Word</li>
-                <li>You want to allow editing after submission</li>
-                <li>An ATS system requires .docx input</li>
-                <li>You&apos;re sharing with someone who needs to add comments</li>
+              <p style={{ fontSize: 13, fontWeight: 700, color: "var(--text)", margin: "0 0 6px" }}>Use Word (.docx) when:</p>
+              <ul style={{ paddingLeft: 16, listStyleType: "disc", fontSize: 12.5, color: "var(--text-muted)", display: "flex", flexDirection: "column", gap: 4 }}>
+                <li>Recruiters request Word files.</li>
+                <li>You want to edit the file further locally.</li>
+                <li>An ATS system recommends docx format.</li>
               </ul>
             </div>
           </div>
-          <p className="text-xs text-[var(--muted)] mt-4">
-            CVEngine generates both from the same Markdown — download whichever you need.
-          </p>
         </section>
 
         {/* What gets converted */}
-        <section className="mb-12">
-          <h2 className="text-lg font-semibold text-[var(--foreground)] mb-4">
-            What Markdown converts to in Word
+        <section style={{ marginBottom: 48 }}>
+          <h2 style={{ fontSize: 16, fontWeight: 700, color: "var(--text)", margin: "0 0 16px" }}>
+            Conversion Map
           </h2>
-          <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] overflow-hidden">
+          <div style={{ border: "1px solid var(--border)", borderRadius: 8, overflow: "hidden", background: "var(--surface)" }}>
             {[
               ["# Your Name", "Word Heading 1"],
               ["## Experience", "Word Heading 2"],
@@ -202,54 +187,73 @@ export default function MarkdownToWordPage() {
             ].map(([md, word], i) => (
               <div
                 key={md}
-                className={`flex items-center gap-4 px-4 py-3 text-sm ${
-                  i % 2 === 0 ? "bg-[var(--background)]/40" : ""
-                }`}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 16,
+                  padding: "10px 16px",
+                  fontSize: 13,
+                  background: i % 2 === 0 ? "var(--surface-raised)" : "transparent",
+                  borderBottom: i < 5 ? "1px solid var(--border)" : "none",
+                }}
               >
-                <code className="font-[family-name:var(--font-geist-mono)] text-[var(--accent)] w-40 shrink-0">
+                <code style={{ fontFamily: "ui-monospace, monospace", color: "var(--accent)", width: 140, flexShrink: 0 }}>
                   {md}
                 </code>
-                <span className="text-[var(--muted)]">→ {word}</span>
+                <span style={{ color: "var(--text-muted)" }}>â†’ {word}</span>
               </div>
             ))}
           </div>
         </section>
 
         {/* FAQ */}
-        <section className="mb-12">
-          <h2 className="text-lg font-semibold text-[var(--foreground)] mb-4">
-            Frequently asked questions
+        <section style={{ marginBottom: 48 }}>
+          <h2 style={{ fontSize: 16, fontWeight: 700, color: "var(--text)", margin: "0 0 16px" }}>
+            Frequently Asked Questions
           </h2>
-          <div className="space-y-4">
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {FAQ.map(({ q, a }) => (
-              <div key={q} className="rounded-xl border border-[var(--card-border)] bg-[var(--card)] p-5">
-                <h3 className="text-sm font-semibold text-[var(--foreground)] mb-2">{q}</h3>
-                <p className="text-sm text-[var(--muted)] leading-relaxed">{a}</p>
+              <div key={q} style={{ border: "1px solid var(--border)", borderRadius: 8, background: "var(--surface)", padding: 16 }}>
+                <h3 style={{ fontSize: 13.5, fontWeight: 700, color: "var(--text)", margin: "0 0 8px" }}>{q}</h3>
+                <p style={{ fontSize: 12.5, color: "var(--text-muted)", lineHeight: 1.5, margin: 0 }}>{a}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* CTA */}
-        <div className="text-center mb-10">
-          <p className="text-sm text-[var(--muted)] mb-4">
+        <div style={{ textAlign: "center", borderTop: "1px solid var(--border)", paddingTop: 32 }}>
+          <p style={{ fontSize: 13, color: "var(--text-muted)", margin: "0 0 16px" }}>
             Also need a PDF?{" "}
-            <Link href="/markdown-to-pdf" className="text-[var(--accent)] hover:underline">
-              Markdown to PDF →
+            <Link href="/markdown-to-pdf" style={{ color: "var(--accent)", textDecoration: "underline" }}>
+              Markdown to PDF â†’
             </Link>
           </p>
           <Link
             href="/cv"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-base font-semibold text-white bg-[var(--accent)] hover:bg-[var(--accent-hover)] shadow-md hover:shadow-lg transition-all"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              padding: "8px 20px",
+              borderRadius: 6,
+              fontSize: 14,
+              fontWeight: 600,
+              color: "#ffffff",
+              background: "var(--accent)",
+              textDecoration: "none",
+              transition: "background 0.15s",
+            }}
+            onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.background = "var(--accent-hover)"}
+            onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.background = "var(--accent)"}
           >
-            Open Markdown to Word converter
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
+            Open CV Builder
           </Link>
         </div>
 
-        <FooterNav />
+        <footer style={{ borderTop: "1px solid var(--border)", padding: "24px 0", background: "var(--surface)", marginTop: 48 }}>
+          <FooterNav />
+        </footer>
       </main>
     </div>
   );

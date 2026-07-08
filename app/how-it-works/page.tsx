@@ -117,10 +117,10 @@ export default function HowItWorksPage() {
       />
       <SiteHeader />
       <main id="main-content" className="flex-1 max-w-3xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-2">
+        <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-2 anim-fade-in-up">
           How CVEngine works
         </h1>
-        <p className="text-[var(--muted)] text-sm mb-8">
+        <p className="text-[var(--muted)] text-sm mb-8 anim-fade-in-up" style={{ animationDelay: "0.05s" }}>
           Build your ATS-friendly CV in four simple steps. No signup. Free.
         </p>
 
@@ -128,7 +128,8 @@ export default function HowItWorksPage() {
           {steps.map((step, idx) => (
             <div
               key={idx}
-              className="flex gap-4 sm:gap-6"
+              className="flex gap-4 sm:gap-6 anim-fade-in-up"
+              style={{ animationDelay: `${0.1 + idx * 0.08}s` }}
             >
               <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center font-bold text-lg sm:text-xl">
                 {step.number}

@@ -1,7 +1,6 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import Editor from "@/components/Editor";
 import Preview from "@/components/Preview";
 import DownloadPdfButton from "@/components/DownloadPdfButton";
@@ -44,114 +43,123 @@ export default function CoverLetterPage() {
   }, [markdown, draftLoaded]);
 
   const downloadButtons = (
-    <>
-      <DownloadPdfButton markdown={markdown} downloadFilename="cover-letter-ats.pdf" />
+    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
       <DownloadWordButton markdown={markdown} downloadFilename="cover-letter-ats.docx" />
-    </>
+      <DownloadPdfButton markdown={markdown} downloadFilename="cover-letter-ats.pdf" />
+    </div>
   );
 
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--background)]">
-      <SiteHeader
-        rightAction={
-          <div className="flex items-center gap-2">{downloadButtons}</div>
-        }
-      />
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", background: "var(--bg)" }}>
+      <SiteHeader rightAction={downloadButtons} />
 
-      <main id="main-content" className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <BackToTools />
-
-        <div className="mb-4 text-center">
-          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] tracking-tight">
-            Cover letter from Markdown
-          </h1>
-          <p className="text-[var(--muted)] mt-1 text-sm">
-            Write · Preview · Download PDF
-          </p>
+      <main style={{ flex: 1, maxWidth: 1280, width: "100%", margin: "0 auto", padding: "16px 24px 40px" }}>
+        
+        {/* Navigation & Controls */}
+        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 12, marginBottom: 12 }}>
+          <BackToTools />
+          
+          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+            <span style={{ fontSize: 12.5, fontWeight: 500, color: "var(--text-muted)" }}>
+              Cover Letter Builder
+            </span>
+          </div>
         </div>
 
-        {/* Mobile-only: download buttons */}
-        <div className="md:hidden flex flex-wrap items-center gap-2 mb-4">
+        {/* Mobile Buttons */}
+        <div className="md:hidden" style={{ display: "flex", justifyContent: "flex-end", marginBottom: 12 }}>
           {downloadButtons}
         </div>
 
-        {/* Mobile tab switcher — hidden on lg+ */}
-        <div className="lg:hidden flex rounded-xl border border-[var(--card-border)] overflow-hidden mb-4 bg-[var(--card)]">
+        {/* Mobile View Switcher */}
+        <div className="lg:hidden" style={{
+          display: "flex",
+          border: "1px solid var(--border)",
+          borderRadius: 8,
+          overflow: "hidden",
+          marginBottom: 12,
+          background: "var(--surface)",
+        }}>
           <button
             type="button"
             onClick={() => setMobileTab("editor")}
-            className={`flex-1 py-2.5 text-sm font-semibold transition-colors ${
-              mobileTab === "editor"
-                ? "bg-[var(--accent)] text-white"
-                : "text-[var(--muted)] hover:text-[var(--foreground)]"
-            }`}
+            style={{
+              flex: 1,
+              padding: "8px 0",
+              fontSize: 13,
+              fontWeight: 600,
+              background: mobileTab === "editor" ? "var(--surface-raised)" : "transparent",
+              color: mobileTab === "editor" ? "var(--accent)" : "var(--text-muted)",
+              border: "none",
+              cursor: "pointer",
+            }}
           >
             Editor
           </button>
           <button
             type="button"
             onClick={() => setMobileTab("preview")}
-            className={`flex-1 py-2.5 text-sm font-semibold transition-colors ${
-              mobileTab === "preview"
-                ? "bg-[var(--accent)] text-white"
-                : "text-[var(--muted)] hover:text-[var(--foreground)]"
-            }`}
+            style={{
+              flex: 1,
+              padding: "8px 0",
+              fontSize: 13,
+              fontWeight: 600,
+              background: mobileTab === "preview" ? "var(--surface-raised)" : "transparent",
+              color: mobileTab === "preview" ? "var(--accent)" : "var(--text-muted)",
+              border: "none",
+              cursor: "pointer",
+            }}
           >
             Preview
           </button>
         </div>
 
-        {/* Side-by-side from lg (1024px) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[calc(100vh-16rem)] min-h-[420px]">
-          <section
-            className={`${
-              mobileTab !== "editor" ? "hidden lg:flex" : "flex"
-            } flex-col min-h-0 rounded-2xl overflow-hidden shadow-sm border border-[var(--card-border)] bg-[var(--card)]`}
-            aria-label="Cover letter editor"
+        {/* Editor and Preview Split Grid */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "1fr",
+          gap: 16,
+          height: "calc(100vh - 200px)",
+          minHeight: 450,
+        }} className="lg:grid-cols-2">
+          {/* Editor block */}
+          <div
+            className={mobileTab !== "editor" ? "hidden lg:flex" : "flex"}
+            style={{
+              flexDirection: "column",
+              borderRadius: 8,
+              border: "1px solid var(--border)",
+              background: "var(--surface)",
+              overflow: "hidden",
+              minHeight: 0,
+            }}
           >
             <Editor value={markdown} onChange={setMarkdown} />
-          </section>
-          <section
-            className={`${
-              mobileTab !== "preview" ? "hidden lg:flex" : "flex"
-            } flex-col min-h-0 rounded-2xl overflow-hidden shadow-sm border border-[var(--card-border)] bg-[var(--card)]`}
-            aria-label="Cover letter preview"
+          </div>
+
+          {/* Preview block */}
+          <div
+            className={mobileTab !== "preview" ? "hidden lg:flex" : "flex"}
+            style={{
+              flexDirection: "column",
+              borderRadius: 8,
+              border: "1px solid var(--border)",
+              background: "var(--surface)",
+              overflow: "hidden",
+              minHeight: 0,
+            }}
           >
             <Preview markdown={markdown} />
-          </section>
-        </div>
-
-        <p className="text-xs text-[var(--muted)] text-right mt-2">
-          Draft auto-saved to browser storage
-        </p>
-
-        <div className="mt-8 pt-6 border-t border-[var(--card-border)]">
-          <h2 className="text-sm font-semibold text-[var(--muted)] uppercase tracking-wider mb-4">
-            More tools
-          </h2>
-          <div className="flex flex-wrap gap-3">
-            {[
-              { href: "/cv", title: "Build CV", desc: "Markdown → PDF" },
-              { href: "/keyword-checker", title: "Keyword checker", desc: "Job ad vs CV" },
-              { href: "/snippets", title: "Snippets", desc: "Section templates" },
-            ].map((t) => (
-              <Link
-                key={t.href}
-                href={t.href}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--card-border)] bg-[var(--card)] text-sm font-medium text-[var(--foreground)] hover:border-[var(--accent)]/40 hover:shadow-md transition-all"
-              >
-                {t.title}
-                <span className="text-[var(--muted)] font-normal">— {t.desc}</span>
-              </Link>
-            ))}
-            <Link href="/" className="inline-flex items-center text-sm font-medium text-[var(--accent)] hover:underline">
-              All tools →
-            </Link>
           </div>
         </div>
 
-        <FooterNav />
       </main>
+
+      <footer style={{ borderTop: "1px solid var(--border)", padding: "24px 0", background: "var(--surface)", marginTop: "auto" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
+          <FooterNav />
+        </div>
+      </footer>
     </div>
   );
 }

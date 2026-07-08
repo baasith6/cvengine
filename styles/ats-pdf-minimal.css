@@ -1,0 +1,109 @@
+/* CVEngine Minimal Template — ATS-friendly, whitespace-forward, understated */
+@page {
+  size: A4;
+  margin: 0.7in;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11pt;
+  line-height: 1.65;
+  color: #1a1a1a;
+  max-width: 6.1in;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Name: clean bold, no decoration */
+h1 {
+  font-size: 21pt;
+  font-weight: 700;
+  margin: 0 0 0.2em 0;
+  color: #111;
+  line-height: 1.2;
+  border: none;
+  letter-spacing: -0.01em;
+}
+
+/* Contact line */
+body > p:first-of-type {
+  font-size: 10pt;
+  color: #666;
+  margin: 0 0 1.4em 0;
+  line-height: 1.5;
+}
+body > p:first-of-type a {
+  color: #444;
+}
+
+/* Section headings: small-caps style, no border */
+h2 {
+  font-size: 9.5pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin: 1.5em 0 0.5em 0;
+  color: #555;
+  border: none;
+  page-break-after: avoid;
+}
+
+/* Job title / role */
+h3 {
+  font-size: 11pt;
+  font-weight: 600;
+  margin: 0.7em 0 0.1em 0;
+  color: #111;
+  page-break-after: avoid;
+}
+
+/* Date lines */
+h3 + p strong,
+p strong {
+  font-size: 10pt;
+  font-weight: 400;
+  color: #777;
+}
+
+p {
+  margin: 0.35em 0;
+  font-size: 11pt;
+}
+
+ul {
+  margin: 0.4em 0 0.7em 0;
+  padding-left: 1.3em;
+  list-style-type: disc;
+}
+
+li {
+  margin: 0.25em 0;
+  line-height: 1.65;
+}
+
+h3 + p {
+  page-break-after: avoid;
+}
+
+ul {
+  page-break-inside: avoid;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+strong {
+  font-weight: 600;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 0.6em 0;
+}

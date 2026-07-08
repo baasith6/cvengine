@@ -7,6 +7,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import Clarity from "@microsoft/clarity";
 import Script from "next/script";
 
 const CONSENT_KEY = "cvengine_cookie_consent";
@@ -109,6 +110,16 @@ function CookieBanner() {
 
 function ConsentScripts({ gaId }: { gaId: string | undefined }) {
   const { hasConsent } = useConsent();
+  const clarityProjectId = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
+
+  useEffect(() => {
+    if (hasConsent !== true || !clarityProjectId) return;
+    Clarity.init(clarityProjectId);
+    Clarity.consentV2({
+      ad_Storage: "granted",
+      analytics_Storage: "granted",
+    });
+  }, [hasConsent, clarityProjectId]);
 
   if (hasConsent !== true) return null;
 

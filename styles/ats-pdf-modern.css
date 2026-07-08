@@ -1,0 +1,110 @@
+/* CVEngine Modern Template — ATS-friendly, contemporary sans-serif with teal accent */
+@page {
+  size: A4;
+  margin: 0.6in;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  line-height: 1.55;
+  color: #1a1a1a;
+  max-width: 6.25in;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Name: teal, large, no border */
+h1 {
+  font-size: 22pt;
+  font-weight: 700;
+  margin: 0 0 0.25em 0;
+  color: #0f766e;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  border: none;
+}
+
+/* Contact line */
+body > p:first-of-type {
+  font-size: 10pt;
+  color: #555;
+  margin: 0 0 1.1em 0;
+  line-height: 1.5;
+}
+body > p:first-of-type a {
+  color: #0f766e;
+}
+
+/* Section headings: teal uppercase with teal 2px underline */
+h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10.5pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 1.2em 0 0.5em 0;
+  padding-bottom: 0.2em;
+  border-bottom: 2px solid #0f766e;
+  color: #0f766e;
+  page-break-after: avoid;
+}
+
+/* Job title / role */
+h3 {
+  font-size: 11pt;
+  font-weight: 700;
+  margin: 0.65em 0 0.15em 0;
+  color: #1a1a1a;
+  page-break-after: avoid;
+}
+
+/* Date lines */
+h3 + p strong,
+p strong {
+  font-size: 10pt;
+  font-weight: 600;
+  color: #555;
+}
+
+p {
+  margin: 0.3em 0;
+  font-size: 11pt;
+}
+
+ul {
+  margin: 0.4em 0 0.6em 0;
+  padding-left: 1.4em;
+}
+
+li {
+  margin: 0.2em 0;
+  line-height: 1.55;
+}
+
+h3 + p {
+  page-break-after: avoid;
+}
+
+ul {
+  page-break-inside: avoid;
+}
+
+a {
+  color: #0f766e;
+  text-decoration: none;
+}
+
+strong {
+  font-weight: 700;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #d1faf6;
+  margin: 0.6em 0;
+}

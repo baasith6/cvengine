@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+"use client";
 import Link from "next/link";
 import FooterNav from "@/components/FooterNav";
 import JsonLdWebPage from "@/components/JsonLdWebPage";
@@ -9,25 +9,6 @@ const siteUrl =
   (typeof process.env.VERCEL_URL === "string"
     ? `https://${process.env.VERCEL_URL}`
     : "https://cvengine.space");
-
-export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Contact CVEngine — get in touch for questions or feedback about our free CV and resume builder.",
-  alternates: { canonical: `${siteUrl}/contact` },
-  openGraph: {
-    title: "Contact | CVEngine",
-    description:
-      "Contact CVEngine — get in touch for questions or feedback about our free CV and resume builder.",
-    url: `${siteUrl}/contact`,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact | CVEngine",
-    description:
-      "Contact CVEngine — get in touch for questions or feedback about our free CV and resume builder.",
-  },
-};
 
 export default function ContactPage() {
   const jsonLd = {
@@ -40,37 +21,40 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--background)]">
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", background: "var(--bg)" }}>
       <JsonLdWebPage data={jsonLd} />
       <SiteHeader />
-      <main className="flex-1 max-w-3xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h1 className="text-2xl font-bold text-[var(--foreground)] mb-6">
+      
+      <main style={{ flex: 1, maxWidth: 640, width: "100%", margin: "0 auto", padding: "48px 24px 64px" }} className="anim-fade-in-up">
+        <h1 style={{ fontSize: 24, fontWeight: 800, color: "var(--text)", letterSpacing: "-0.02em", margin: "0 0 24px" }}>
           Contact
         </h1>
-        <div className="text-[var(--foreground)] text-sm leading-relaxed space-y-4">
+        
+        <div style={{ display: "flex", flexDirection: "column", gap: 16, fontSize: 14, color: "var(--text)", lineHeight: 1.65 }}>
           <p>
-            For questions, feedback, or support about CVEngine, you can reach us
-            by email.
+            For questions, feedback, or support regarding CVEngine, you can reach out directly via email.
           </p>
           <p>
-            <strong>Email:</strong>{" "}
+            <strong style={{ fontWeight: 600 }}>Email:</strong>{" "}
             <a
               href="mailto:hello@cvengine.space"
-              className="text-[var(--accent)] hover:underline"
+              style={{ color: "var(--accent)", textDecoration: "underline" }}
             >
               hello@cvengine.space
             </a>
           </p>
-          <p className="text-[var(--muted)]">
-            We aim to respond within a few business days. We do not collect or
-            store your CV content; see our{" "}
-            <Link href="/privacy" className="text-[var(--accent)] underline">
+          <p style={{ color: "var(--text-muted)", fontSize: 13, marginTop: 12 }}>
+            We do not collect or store your CV content; see our{" "}
+            <Link href="/privacy" style={{ color: "var(--accent)", textDecoration: "underline" }}>
               Privacy Policy
             </Link>{" "}
             for details.
           </p>
         </div>
-        <FooterNav />
+        
+        <footer style={{ borderTop: "1px solid var(--border)", padding: "24px 0", background: "var(--surface)", marginTop: 48 }}>
+          <FooterNav />
+        </footer>
       </main>
     </div>
   );
