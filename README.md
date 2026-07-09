@@ -1,62 +1,116 @@
-# CVEngine
+<div align="center">
+  <img src="public/logo.png" alt="CVEngine Logo" width="120" />
+  <h1>CVEngine 🚀</h1>
+  <p><strong>The Ultimate ATS-Friendly Markdown to PDF Resume Builder</strong></p>
+  
+  <p>
+    <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" /></a>
+    <a href="https://reactjs.org/"><img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" /></a>
+    <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" /></a>
+    <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" /></a>
+  </p>
 
-CVEngine — build ATS-friendly CVs from Markdown. Paste or upload `.md`, preview live, and download a PDF.
+  <p>
+    <a href="#features">Features</a> •
+    <a href="#how-it-works">How it Works</a> •
+    <a href="#getting-started">Getting Started</a> •
+    <a href="#contributing">Contributing</a>
+  </p>
+</div>
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+---
 
-## Getting Started
+## 🌟 Why CVEngine?
 
-First, run the development server:
+Creating an ATS (Applicant Tracking System) friendly resume shouldn't be a hassle. **CVEngine** empowers developers, designers, and professionals to build perfectly structured, beautifully rendered, and 100% ATS-readable resumes using simple Markdown. 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Stop wrestling with Word documents and complex design tools. Write in Markdown, preview live, and export to a pristine PDF in seconds.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Key Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 📝 **Markdown First:** Write your resume in standard Markdown. Keep it in version control.
+- 👁️ **Live Preview:** See your resume render in real-time as you type.
+- 🤖 **ATS-Optimized:** Generates clean, parseable PDFs that Applicant Tracking Systems love.
+- 🎨 **Beautiful Defaults:** Professional typography and layouts right out of the box.
+- ⚡ **Lightning Fast:** Built on Next.js 14 and React for instantaneous rendering.
+- 🔒 **Privacy Focused:** Everything runs in your browser. Your data stays yours.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📸 Sneak Peek
 
-## Learn More
+### Markdown to PDF Magic
+![Markdown vs PDF Preview](public/images/markdown_vs_pdf.png)
 
-To learn more about Next.js, take a look at the following resources:
+### ATS Parsing & Keyword Matching
+![ATS Parsing](public/images/ats_parsing.png)
+![Keyword Matching](public/images/keyword_matching.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Getting Started
 
-## Deploy on Vercel (cvengine.space)
+Follow these instructions to get a copy of the project up and running on your local machine.
 
-1. **Push your code to GitHub** (or GitLab / Bitbucket):
+### Prerequisites
+Make sure you have Node.js installed (v18.x or later is recommended).
+
+### Installation
+
+1. **Clone the repository:**
    ```bash
-   git init
-   git add .
-   git commit -m "CVEngine initial"
-   git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
-   git push -u origin main
+   git clone https://github.com/baasith6/cvengine.git
+   cd cvengine
    ```
 
-2. **Import on Vercel**
-   - Go to [vercel.com/new](https://vercel.com/new)
-   - Sign in with GitHub and click **Import** next to your CVEngine repo
-   - Leave **Framework Preset** as Next.js (auto-detected)
-   - Click **Deploy**
+2. **Install dependencies:**
+   ```bash
+   npm install
+   # or yarn install / pnpm install / bun install
+   ```
 
-3. **Add your domain**
-   - After deploy, open the project → **Settings** → **Domains**
-   - Add **cvengine.space** and follow the DNS steps (add the CNAME or A record your registrar shows)
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
 
-4. **Optional env (recommended)**
-   - **Settings** → **Environment Variables**
-   - Add `NEXT_PUBLIC_SITE_URL` = `https://cvengine.space` (so all links use your domain)
+4. **Open your browser:**
+   Navigate to [http://localhost:3000](http://localhost:3000) to see the application in action!
 
-Redeploys happen automatically on every push to `main`.
+---
+
+## 📈 How to Make This Repo Rank Higher (SEO & GitHub Optimization)
+
+To help this repository reach more people, make sure to add the following **Topics (Tags)** in your repository settings on GitHub. Click the ⚙️ icon next to "About" on the right side of the repo page and add these:
+
+`resume-builder`, `cv-generator`, `markdown-to-pdf`, `ats-friendly`, `nextjs`, `react`, `resume`, `cv`, `markdown`, `productivity-tools`, `open-source`
+
+**Also, encourage users to:**
+- ⭐ **Star** the repository if they find it useful!
+- 🍴 **Fork** it and contribute to the code.
+- 🌐 Share the deployed version on Twitter, LinkedIn, and Reddit.
+
+## 🛠️ Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org/) (App Router)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Icons:** Lucide React / Framer Motion for animations
+- **Deployment:** [Vercel](https://vercel.com/) (Deployed at `cvengine.space`)
+
+## 🤝 Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+<div align="center">
+  Made with ❤️ by Abdul Baasith
+</div>
