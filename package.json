@@ -14,7 +14,7 @@
     "@upstash/redis": "^1.37.0",
     "docx": "^9.6.0",
     "framer-motion": "^12.42.2",
-    "marked": "^17.0.3",
+    "marked": "^18.0.5",
     "next": "14.2.35",
     "puppeteer-core": "^24.37.4",
     "react": "^18",
