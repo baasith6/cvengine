@@ -104,6 +104,10 @@ export const metadata: Metadata = {
     capable: true,
     title: siteName,
   },
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
 };
 
 export const viewport: Viewport = {

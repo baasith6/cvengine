@@ -76,13 +76,22 @@ Experienced [role] with [X] years in [industry/field]. Skilled in [key skill 1],
   },
   {
     id: "volunteer",
-    title: "Volunteer / Activities",
+    title: "Volunteer Experience",
     description: "Volunteer work or extracurriculars.",
     category: "Optional",
-    markdown: `## Volunteer / Activities
+    markdown: `## Volunteer Experience
 ### [Role], [Organisation]
 **Month YYYY – Present**
 - [Responsibility or achievement]`,
+  },
+  {
+    id: "awards",
+    title: "Awards & Honors",
+    description: "Scholarships, industry awards, or recognition.",
+    category: "Optional",
+    markdown: `## Awards & Honors
+- **[Award Title]** — [Awarding Body] (Year)
+- **[Scholarship or Honor]** — [Institution] (Year)`,
   },
   {
     id: "references",

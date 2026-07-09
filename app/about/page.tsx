@@ -102,21 +102,17 @@ export default function AboutPage() {
             border: "1px solid var(--border)",
             borderRadius: 8,
             background: "var(--surface-raised)",
-            padding: "16px 20px",
+            overflow: "hidden",
             display: "flex",
-            flexWrap: "wrap",
             alignItems: "center",
-            justifyContent: "center",
-            gap: 12,
-            fontSize: 13,
-            fontWeight: 600,
-            color: "var(--text-muted)"
+            justifyContent: "center"
           }}>
-            <span>Markdown Editor</span>
-            <span style={{ color: "var(--text-faint)" }}>→</span>
-            <span>Live Preview</span>
-            <span style={{ color: "var(--text-faint)" }}>→</span>
-            <span style={{ color: "var(--text)" }}>ATS-Friendly Export (PDF / Word)</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img 
+              src="/images/about_workspace.png" 
+              alt="CVEngine Workspace - Markdown to PDF" 
+              style={{ width: "100%", height: "auto", display: "block" }} 
+            />
           </div>
         </section>
 
@@ -290,9 +286,13 @@ export default function AboutPage() {
             
             {/* Brand Column */}
             <div className="md:col-span-4 flex flex-col gap-3">
-              <span style={{ fontSize: 15, fontWeight: 800, color: "var(--text)", letterSpacing: "-0.03em" }}>
-                CVEngine
-              </span>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/logo.png" alt="CVEngine Logo" style={{ width: 28, height: 28, objectFit: "contain" }} />
+                <span style={{ fontSize: 15, fontWeight: 800, color: "var(--text)", letterSpacing: "-0.03em" }}>
+                  CVEngine
+                </span>
+              </div>
               <p style={{ fontSize: 13, color: "var(--text-muted)", lineHeight: 1.5, margin: 0 }}>
                 Private Markdown-based CV and cover letter builder.
               </p>

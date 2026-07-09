@@ -58,6 +58,23 @@ export default function MatchCvToJobDescriptionPage() {
             Sending the same CV to every job is one of the most common mistakes applicants make. Recruiters can tell when a CV is generic, and applicant tracking systems score resumes against the specific language in the job posting. Tailoring your CV to each role significantly improves both your ATS score and your chances of being shortlisted. This guide explains how to do it efficiently without rewriting your CV from scratch every time.
           </p>
 
+          <div style={{
+            margin: "24px 0 32px",
+            border: "1px solid var(--border)",
+            borderRadius: 8,
+            overflow: "hidden",
+            background: "var(--surface)",
+            display: "flex",
+            justifyContent: "center",
+            padding: "20px"
+          }}>
+            <img 
+              src="/images/keyword_matching.png" 
+              alt="Keyword Matching Diagram" 
+              style={{ maxHeight: 240, objectFit: "contain", width: "100%" }} 
+            />
+          </div>
+
           <section className="mb-8">
             <h2 className="text-lg font-semibold text-[var(--foreground)] mb-3">
               Why tailoring matters

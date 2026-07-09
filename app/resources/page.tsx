@@ -413,9 +413,13 @@ export default function ResourcesPage() {
             
             {/* Brand Column */}
             <div className="md:col-span-4 flex flex-col gap-3">
-              <span style={{ fontSize: 15, fontWeight: 800, color: "var(--text)", letterSpacing: "-0.03em" }}>
-                CVEngine
-              </span>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/logo.png" alt="CVEngine Logo" style={{ width: 28, height: 28, objectFit: "contain" }} />
+                <span style={{ fontSize: 15, fontWeight: 800, color: "var(--text)", letterSpacing: "-0.03em" }}>
+                  CVEngine
+                </span>
+              </div>
               <p style={{ fontSize: 13, color: "var(--text-muted)", lineHeight: 1.5, margin: 0 }}>
                 Private Markdown-based CV and cover letter builder.
               </p>

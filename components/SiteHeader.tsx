@@ -1,9 +1,10 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTheme } from "@/lib/theme";
+import { AnimatePresence, motion } from "framer-motion";
 
 type SiteHeaderProps = {
   rightAction?: React.ReactNode;
@@ -29,6 +30,15 @@ export default function SiteHeader({ rightAction }: SiteHeaderProps) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const { theme, toggle } = useTheme();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 12);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header
@@ -36,8 +46,11 @@ export default function SiteHeader({ rightAction }: SiteHeaderProps) {
         position: "sticky",
         top: 0,
         zIndex: 50,
-        background: "var(--surface)",
+        background: scrolled ? "var(--surface-blur)" : "var(--surface)",
+        backdropFilter: scrolled ? "blur(12px)" : "none",
         borderBottom: "1px solid var(--border)",
+        boxShadow: scrolled ? "0 4px 12px -2px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02)" : "none",
+        transition: "background 0.2s, backdrop-filter 0.2s, box-shadow 0.2s",
       }}
     >
       <div
@@ -61,9 +74,14 @@ export default function SiteHeader({ rightAction }: SiteHeaderProps) {
             color: "var(--text)",
             textDecoration: "none",
             flexShrink: 0,
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
           }}
         >
-          CVEngine
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="CVEngine Logo" style={{ width: 32, height: 32, objectFit: "contain" }} />
+          <span style={{ fontSize: 16, fontWeight: 800, letterSpacing: "-0.02em" }}>CVEngine</span>
         </Link>
 
         {/* Desktop nav */}
@@ -134,44 +152,51 @@ export default function SiteHeader({ rightAction }: SiteHeaderProps) {
       </div>
 
       {/* Mobile drawer */}
-      {menuOpen && (
-        <div
-          className="md:hidden anim-slide-down"
-          style={{
-            borderTop: "1px solid var(--border)",
-            background: "var(--surface)",
-          }}
-        >
-          <nav
-            aria-label="Mobile navigation"
-            style={{ padding: "8px 16px 12px" }}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            style={{
+              borderTop: "1px solid var(--border)",
+              background: "var(--surface)",
+              overflow: "hidden",
+            }}
+            className="md:hidden"
           >
-            {MOBILE_LINKS.map(({ href, label }) => {
-              const active = href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
-              return (
-                <Link
-                  key={href}
-                  href={href}
-                  onClick={() => setMenuOpen(false)}
-                  style={{
-                    display: "block",
-                    padding: "8px 12px",
-                    borderRadius: 6,
-                    fontSize: 14,
-                    fontWeight: active ? 500 : 400,
-                    color: active ? "var(--accent)" : "var(--text)",
-                    textDecoration: "none",
-                    background: active ? "var(--accent-bg)" : "transparent",
-                    marginBottom: 2,
-                  }}
-                >
-                  {label}
-                </Link>
-              );
-            })}
-          </nav>
-        </div>
-      )}
+            <nav
+              aria-label="Mobile navigation"
+              style={{ padding: "8px 16px 12px" }}
+            >
+              {MOBILE_LINKS.map(({ href, label }) => {
+                const active = href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    onClick={() => setMenuOpen(false)}
+                    style={{
+                      display: "block",
+                      padding: "8px 12px",
+                      borderRadius: 6,
+                      fontSize: 14,
+                      fontWeight: active ? 500 : 400,
+                      color: active ? "var(--accent)" : "var(--text)",
+                      textDecoration: "none",
+                      background: active ? "var(--accent-bg)" : "transparent",
+                      marginBottom: 2,
+                    }}
+                  >
+                    {label}
+                  </Link>
+                );
+              })}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

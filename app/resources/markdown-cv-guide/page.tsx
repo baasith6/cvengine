@@ -66,6 +66,23 @@ export default function MarkdownCvGuidePage() {
             Markdown is a simple plain-text format using a <code className="font-mono text-xs">.md</code> file extension. Writing your CV in a <code className="font-mono text-xs">.md</code> file keeps your content portable, easy to edit in any text editor, and ready to convert to a clean ATS-friendly PDF or Word (.docx) in seconds. This guide explains what Markdown is, why it suits CVs well, and how to turn a <code className="font-mono text-xs">.md</code> file into the formats employers expect.
           </p>
 
+          <div style={{
+            margin: "24px 0 32px",
+            border: "1px solid var(--border)",
+            borderRadius: 8,
+            overflow: "hidden",
+            background: "var(--surface)",
+            display: "flex",
+            justifyContent: "center",
+            padding: "20px"
+          }}>
+            <img 
+              src="/images/markdown_vs_pdf.png" 
+              alt="Markdown CV to PDF/Word Comparison" 
+              style={{ maxHeight: 240, objectFit: "contain", width: "100%" }} 
+            />
+          </div>
+
           <section className="mb-8">
             <h2 className="text-lg font-semibold text-[var(--foreground)] mb-3">
               What is Markdown?

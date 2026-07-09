@@ -58,6 +58,23 @@ export default function HowToWriteAtsResumePage() {
             Most companies use applicant tracking systems (ATS) to screen resumes before a human sees them. If your resume isn&apos;t formatted with ATS in mind, it can be rejected automatically even when you&apos;re a strong fit for the role. This guide explains what ATS look for, how to format your resume correctly, and how to use keywords effectively.
           </p>
 
+          <div style={{
+            margin: "24px 0 32px",
+            border: "1px solid var(--border)",
+            borderRadius: 8,
+            overflow: "hidden",
+            background: "var(--surface)",
+            display: "flex",
+            justifyContent: "center",
+            padding: "20px"
+          }}>
+            <img 
+              src="/images/ats_parsing.png" 
+              alt="ATS Resume Parsing Diagram" 
+              style={{ maxHeight: 240, objectFit: "contain", width: "100%" }} 
+            />
+          </div>
+
           <section className="mb-8">
             <h2 className="text-lg font-semibold text-[var(--foreground)] mb-3">
               What is an ATS?
