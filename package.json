@@ -12,7 +12,7 @@
     "@microsoft/clarity": "^1.0.2",
     "@sparticuz/chromium": "^143.0.4",
     "@upstash/redis": "^1.37.0",
-    "docx": "^9.6.0",
+    "docx": "^9.7.1",
     "framer-motion": "^12.42.2",
     "marked": "^17.0.3",
     "next": "14.2.35",
