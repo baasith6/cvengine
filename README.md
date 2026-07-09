@@ -9,6 +9,11 @@
     <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" /></a>
     <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" /></a>
   </p>
+  <p>
+    <a href="https://github.com/baasith6/cvengine/actions/workflows/ci.yml"><img src="https://github.com/baasith6/cvengine/actions/workflows/ci.yml/badge.svg" alt="CI Status" /></a>
+    <a href="https://github.com/baasith6/cvengine/network/dependencies"><img src="https://img.shields.io/badge/dependabot-enabled-025e8c?logo=dependabot&logoColor=white" alt="Dependabot" /></a>
+    <a href="https://github.com/baasith6/cvengine/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License: MIT" /></a>
+  </p>
 
   <p>
     <a href="#features">Features</a> •
